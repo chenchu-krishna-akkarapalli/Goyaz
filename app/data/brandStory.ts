@@ -1,0 +1,9 @@
+export const BRAND_STORY_FRAME81 = "/images/sections/brand-story/frame81.avif";
+export const BRAND_STORY_FRAME82 = "/images/sections/brand-story/frame82.avif";
+export const BRAND_STORY_FRAME83 = "/images/sections/brand-story/frame83.avif";
+export const BRAND_STORY_FRAME49 = "/images/sections/inner-circle/frame49.avif";
+export const BRAND_STORY_FRAME130 = "/images/sections/inner-circle/frame130.avif";
+export const BRAND_STORY_GROUP13 = "/images/sections/brand-story/group13.svg";
+export const BRAND_STORY_GROUP18 = "/images/sections/brand-story/group18.svg";
+export const BRAND_STORY_GROUP10 = "/images/sections/brand-story/group10.svg";
+export const BRAND_STORY_GROUP8 = "/images/sections/brand-story/group8.svg";

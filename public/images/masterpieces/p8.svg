@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+  <defs>
+    <linearGradient id="g8" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1b3d63"/>
+      <stop offset="100%" stop-color="#0e1d31"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#g8)"/>
+  <path d="M240 430c70-160 250-160 320 0" fill="none" stroke="#d5e4ff" stroke-width="12"/>
+  <rect x="340" y="390" width="120" height="90" rx="18" fill="none" stroke="#f0f6ff" stroke-width="8"/>
+  <text x="400" y="705" font-size="34" text-anchor="middle" fill="#dceaff" font-family="Arial">HERITAGE DROP</text>
+</svg>

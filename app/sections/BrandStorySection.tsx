@@ -1,0 +1,295 @@
+import {
+  BRAND_STORY_FRAME81,
+  BRAND_STORY_FRAME82,
+  BRAND_STORY_FRAME83,
+  BRAND_STORY_FRAME49,
+  BRAND_STORY_FRAME130,
+  BRAND_STORY_GROUP13,
+  BRAND_STORY_GROUP18,
+  BRAND_STORY_GROUP10,
+  BRAND_STORY_GROUP8,
+} from "../data/brandStory";
+import { ScrollRevealWrapper } from "../utils/animations";
+import { SectionHeading } from "../components/SectionHeading";
+import { SECTION_HEADINGS } from "../data/sectionHeadings";
+
+export function BrandStorySection() {
+  const frame81 = BRAND_STORY_FRAME81;
+  const frame82 = BRAND_STORY_FRAME82;
+  const frame83 = BRAND_STORY_FRAME83;
+  const frame49 = BRAND_STORY_FRAME49;
+  const frame130 = BRAND_STORY_FRAME130;
+  const group13 = BRAND_STORY_GROUP13;
+  const group18 = BRAND_STORY_GROUP18;
+  const group10 = BRAND_STORY_GROUP10;
+  const group8 = BRAND_STORY_GROUP8;
+
+  return (
+    <section className="flex flex-col gap-[24px] lg:gap-[40px] items-start w-full" data-mfe="section">
+
+      <SectionHeading {...SECTION_HEADINGS.brandStory} />
+
+      {/* ── BLOCK 1 ─────────────────────────────────────── */}
+      <div className="w-full flex flex-col lg:relative gap-[-40px] lg:h-[560px]">
+
+        {/* Mobile: collage LEFT · text RIGHT */}
+        <div className="lg:hidden flex items-start gap-[16px] w-full">
+
+          {/* Overlapping image collage */}
+          <div
+            className="flex-shrink-0"
+            style={{
+              position: "relative",
+              display: "inline-grid",
+              gridTemplateColumns: "max-content",
+              gridTemplateRows: "max-content",
+            }}
+          >
+            {/* Image 1 — frame81 with directional crop */}
+            <div style={{ gridColumn: 1, gridRow: 1, width: 101, height: 101, position: "relative" }}>
+              <div className="absolute inset-0 overflow-hidden rounded-[15px]">
+                <img
+                  alt=""
+                  className="absolute h-full max-w-none"
+                  src={frame81}
+                  style={{ left: "-35.99%", top: "0.15%", width: "149.98%" }}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
+            {/* Image 2 — frame82, offset to bottom-right */}
+            <div
+              className="border-2 border-white rounded-[15px] overflow-hidden"
+              style={{ gridColumn: 1, gridRow: 1, marginLeft: 50.67, marginTop: 50.67, width: 101, height: 101, position: "relative" }}
+            >
+              <img alt="" className="absolute inset-0 object-cover w-full h-full rounded-[15px]" src={frame82} loading="lazy" decoding="async" />
+            </div>
+          </div>
+
+          {/* Text column */}
+          <div className="flex-1 min-w-0 flex flex-col gap-[10px] items-center">
+            <p
+              style={{ fontFamily: "'Futura PT', sans-serif" }}
+              className="text-[8px] font-medium text-black text-center uppercase w-full leading-snug"
+            >
+              Loved by Brides Across India
+            </p>
+            <div
+              style={{ fontFamily: "'Futura PT', sans-serif" }}
+              className="text-[5px] text-black text-center uppercase w-full leading-[1.45]"
+            >
+              <p className="mb-[4px]">From intimate pre-wedding rituals to the grandeur of the mandap, Goyaz has been the trusted choice for countless brides. We believe that your bridal jewelry should be as unforgettable as the day itself. See how women are styling our intricate Nakshi and brilliant Polki silver masterpieces to complete their dream trousseau&mdash;achieving the rich, regal aesthetic of traditional gold, crafted purely in premium 92.5 silver. Become part of our legacy and let our heirlooms witness your most cherished milestones.</p>
+              <p>Our jewelry isn&apos;t simply manufactured, it is sculpted. Each piece is brought to life by master karigars (artisans) who have spent generations perfecting the ancient arts of Nakshi, Kundan, and Victorian jewelry. From the deep, dimensional carving of temple motifs to the precision setting of premium moissanites and Russian emeralds, every detail is meticulously finished with 24k gold micron plating. The result is a flawless, royal gleam that rivals pure gold.</p>
+            </div>
+            <div className="bg-white border border-black flex items-center justify-center px-[16px] py-[8px] cursor-pointer hover:bg-black hover:text-white transition-colors group w-full max-w-[120px]">
+              <span style={{ fontFamily: "'Futura PT', sans-serif" }} className="text-[8px] text-black group-hover:text-white whitespace-nowrap">Discover More</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile: decorative SVG after Block 1 */}
+        <div className="lg:hidden self-start mt-[-10px]" style={{ height: 75, width: 269 }}>
+          <img alt="" className="w-full h-full" src={group18} loading="lazy" decoding="async" />
+        </div>
+
+        {/* Desktop: image collage (unchanged) */}
+        <div className="hidden lg:block absolute left-0 top-0 h-[560px] w-[955px]">
+          <div className="absolute left-[40px] top-0" style={{ position: "relative", display: "inline-grid", gridTemplateColumns: "max-content", gridTemplateRows: "max-content" }}>
+            <div className="rounded-[30px] overflow-hidden" style={{ gridColumn: 1, gridRow: 1, width: 320, height: 320, position: "relative" }}>
+              <div className="absolute inset-0 overflow-hidden rounded-[30px]">
+                <img alt="" className="absolute h-full max-w-none" src={frame81} style={{ left: "-35.99%", top: "0.15%", width: "149.98%" }} loading="lazy" decoding="async" />
+              </div>
+            </div>
+            <div className="flex items-center justify-center" style={{ gridColumn: 1, gridRow: 1, marginLeft: 160, marginTop: 160, width: 320, height: 320, position: "relative", transform: "scaleY(-1) rotate(180deg)" }}>
+              <div className="border-[5px] border-solid border-white rounded-[30px] overflow-hidden" style={{ width: 320, height: 320, position: "relative" }}>
+                <img alt="" className="absolute inset-0 object-cover w-full h-full rounded-[30px]" src={frame82} loading="lazy" decoding="async" />
+              </div>
+            </div>
+          </div>
+          <div className="absolute left-0 top-[288px] h-[256px] w-[915px]">
+            <img alt="" className="absolute inset-0 w-full h-full" src={group13} loading="lazy" decoding="async" />
+          </div>
+        </div>
+
+        {/* Desktop: text (unchanged) */}
+        <div className="hidden lg:flex w-full flex-col items-center lg:absolute lg:right-0 lg:top-[48px] lg:w-[560px]">
+          <ScrollRevealWrapper delay={200}>
+            <div style={{ fontFamily: "'Futura PT', sans-serif" }} className="flex flex-col gap-[20px] items-center px-[10px] py-[40px] text-black text-center uppercase w-full">
+              <p className="text-[20px] font-medium w-full">Loved by Brides Across India</p>
+              <div className="text-[14px] w-full">
+                <p className="mb-1">From intimate pre-wedding rituals to the grandeur of the mandap, Goyaz has been the trusted choice for countless brides. We believe that your bridal jewelry should be as unforgettable as the day itself. See how women are styling our intricate Nakshi and brilliant Polki silver masterpieces to complete their dream trousseau&mdash;achieving the rich, regal aesthetic of traditional gold, crafted purely in premium 92.5 silver. Become part of our legacy and let our heirlooms witness your most cherished milestones.</p>
+                <p>Our jewelry isn&apos;t simply manufactured, it is sculpted. Each piece is brought to life by master karigars (artisans) who have spent generations perfecting the ancient arts of Nakshi, Kundan, and Victorian jewelry. From the deep, dimensional carving of temple motifs to the precision setting of premium moissanites and Russian emeralds, every detail is meticulously finished with 24k gold micron plating. The result is a flawless, royal gleam that rivals pure gold.</p>
+              </div>
+            </div>
+          </ScrollRevealWrapper>
+          <ScrollRevealWrapper delay={400}>
+            <div className="bg-white border border-black flex items-center px-[40px] py-[18px] cursor-pointer transition-all duration-300 hover:bg-black hover:text-white group">
+              <span style={{ fontFamily: "'Futura PT', sans-serif" }} className="text-[24px] text-black group-hover:text-white whitespace-nowrap">Discover More</span>
+            </div>
+          </ScrollRevealWrapper>
+        </div>
+      </div>
+
+      {/* ── BLOCK 2 ─────────────────────────────────────── */}
+      <div className="w-full flex flex-col">
+
+        {/* Mobile: text LEFT · collage RIGHT */}
+        <div className="lg:hidden flex items-start gap-[16px] w-full">
+
+          {/* Text column */}
+          <div className="flex-1 min-w-0 flex flex-col gap-[10px] items-center">
+            <p
+              style={{ fontFamily: "'Futura PT', sans-serif" }}
+              className="text-[8px] font-medium text-black text-center uppercase w-full leading-snug"
+            >
+              Crafted by Master Karigars
+            </p>
+            <div
+              style={{ fontFamily: "'Futura PT', sans-serif" }}
+              className="text-[5px] text-black text-center uppercase w-full leading-[1.45]"
+            >
+              <p className="mb-[4px]">Every Goyaz piece begins as a hand-drawn idea and is shaped through time-honored craftsmanship. Our karigars preserve heritage techniques across Nakshi, Kundan, and temple-inspired artistry, creating jewelry that feels traditional yet unmistakably modern for today&apos;s celebrations.</p>
+              <p>From precise stone setting to rich 24k gold micron finishing, each detail is executed by hand with meticulous care. This devotion to process gives every piece its royal depth, brilliant sparkle, and heirloom quality designed to be treasured across generations.</p>
+            </div>
+            <div className="bg-white border border-black flex items-center justify-center px-[16px] py-[8px] cursor-pointer hover:bg-black hover:text-white transition-colors group w-full max-w-[120px]">
+              <span style={{ fontFamily: "'Futura PT', sans-serif" }} className="text-[8px] text-black group-hover:text-white whitespace-nowrap">Discover More</span>
+            </div>
+          </div>
+
+          {/* Overlapping image collage */}
+          <div
+            className="flex-shrink-0"
+            style={{
+              position: "relative",
+              display: "inline-grid",
+              gridTemplateColumns: "max-content",
+              gridTemplateRows: "max-content",
+            }}
+          >
+            {/* Image 1 — frame83 */}
+            <div className="rounded-[15px] overflow-hidden" style={{ gridColumn: 1, gridRow: 1, width: 101, height: 101, position: "relative" }}>
+              <img alt="" className="absolute inset-0 object-cover w-full h-full rounded-[15px]" src={frame83} loading="lazy" decoding="async" />
+            </div>
+            {/* Image 2 — frame49, offset to bottom-right */}
+            <div
+              className="border-2 border-white rounded-[15px] overflow-hidden"
+              style={{ gridColumn: 1, gridRow: 1, marginLeft: 50.67, marginTop: 50.67, width: 101, height: 101, position: "relative" }}
+            >
+              <img alt="" className="absolute inset-0 object-cover w-full h-full rounded-[15px]" src={frame49} loading="lazy" decoding="async" />
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile: decorative SVG after Block 2 */}
+        <div className="lg:hidden self-end mt-3" style={{ height: 72, width: 266 }}>
+          <img alt="" className="w-full h-full" src={group10} loading="lazy" decoding="async" />
+        </div>
+
+        {/* Desktop: text + collage (unchanged) */}
+        <div className="hidden lg:inline-grid relative" style={{ gridTemplateColumns: "max-content", gridTemplateRows: "max-content" }}>
+          <div style={{ gridColumn: 1, gridRow: 1, position: "relative" }} className="flex flex-col items-center w-[560px] mt-14">
+            <ScrollRevealWrapper delay={200}>
+              <div style={{ fontFamily: "'Futura PT', sans-serif" }} className="flex flex-col gap-[20px] items-center px-[10px] py-[40px] text-black text-center uppercase w-full">
+                <p className="text-[20px] font-medium w-full">Crafted by Master Karigars</p>
+                <div className="text-[14px] w-full">
+                  <p className="mb-1">Every Goyaz piece begins as a hand-drawn idea and is shaped through time-honored craftsmanship. Our karigars preserve heritage techniques across Nakshi, Kundan, and temple-inspired artistry, creating jewelry that feels traditional yet unmistakably modern for today&apos;s celebrations.</p>
+                  <p>From precise stone setting to rich 24k gold micron finishing, each detail is executed by hand with meticulous care. This devotion to process gives every piece its royal depth, brilliant sparkle, and heirloom quality designed to be treasured across generations.</p>
+                </div>
+              </div>
+            </ScrollRevealWrapper>
+            <ScrollRevealWrapper delay={400}>
+              <div className="bg-white border border-black flex items-center px-[40px] py-[18px] cursor-pointer transition-all duration-300 hover:bg-black hover:text-white group">
+                <span style={{ fontFamily: "'Futura PT', sans-serif" }} className="text-[24px] text-black group-hover:text-white whitespace-nowrap">Discover More</span>
+              </div>
+            </ScrollRevealWrapper>
+          </div>
+
+          <div className="hidden lg:block" style={{ gridColumn: 1, gridRow: 1, marginLeft: 394, position: "relative", display: "inline-grid", gridTemplateColumns: "max-content", gridTemplateRows: "max-content" }}>
+            <div style={{ gridColumn: 1, gridRow: 1, marginLeft: 446, position: "relative", display: "inline-grid", gridTemplateColumns: "max-content", gridTemplateRows: "max-content" }}>
+              <div style={{ position: "relative", display: "inline-grid", gridTemplateColumns: "max-content", gridTemplateRows: "max-content" }}>
+                <div className="rounded-[30px] overflow-hidden" style={{ gridColumn: 1, gridRow: 1, width: 320, height: 320, position: "relative" }}>
+                  <img alt="" className="absolute inset-0 object-cover w-full h-full rounded-[30px]" src={frame83} loading="lazy" decoding="async" />
+                </div>
+                <div className="border-[5px] border-solid border-white rounded-[30px] overflow-hidden" style={{ gridColumn: 1, gridRow: 1, marginLeft: 160, marginTop: 160, width: 320, height: 320, position: "relative" }}>
+                  <img alt="" className="absolute inset-0 object-cover w-full h-full rounded-[30px]" src={frame49} loading="lazy" decoding="async" />
+                </div>
+              </div>
+            </div>
+            <div style={{ gridColumn: 1, gridRow: 1, marginTop: 298, position: "relative", width: 966, height: 262 }}>
+              <img alt="" className="absolute inset-0 w-full h-full" src={group10} loading="lazy" decoding="async" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── BANNER ──────────────────────────────────────── */}
+      <ScrollRevealWrapper className="flex flex-col gap-[10px] lg:gap-[40px] items-center w-full">
+        <div className="border-[#083c30] border-[0.5px] border-solid h-[113px] sm:h-[180px] lg:h-[398px] relative rounded-[15px] lg:rounded-[30px] w-full overflow-hidden">
+          <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[15px] lg:rounded-[30px]">
+            <img alt="" className="absolute left-0 max-w-none w-full" src={frame130} style={{ height: "195.3%", top: "-68.09%" }} loading="lazy" decoding="async" />
+          </div>
+
+          {/* Mobile: two-column layout — brand message LEFT · promo RIGHT */}
+          <div className="lg:hidden absolute inset-0 flex items-center px-[16px] gap-3">
+            <div className="flex flex-col gap-[6px] items-start flex-1 min-w-0">
+              <p style={{ fontFamily: "'House of Montague', serif" }} className="text-[14px] sm:text-[17px] text-white leading-tight">
+                {"India's Largest Premium Silver Destination"}
+              </p>
+              <p style={{ fontFamily: "'Futura PT', sans-serif" }} className="text-[5px] sm:text-[11px] text-white/80 leading-tight">
+                Join the Goyaz Inner Circle. Get early access to new collections and exclusive bridal offers.
+              </p>
+            </div>
+            <div className="flex flex-col items-end flex-shrink-0 gap-[3px]">
+              <div style={{ fontFamily: "'House of Montague', serif" }} className="flex flex-col items-end text-white">
+                <p className="text-[13px] sm:text-[15px] text-center">MOTHER&apos;S DAY</p>
+                <p className="text-[8px] text-right">OFFER</p>
+              </div>
+              <div className="flex items-end gap-[2px]">
+                <div style={{ fontFamily: "'House of Montague', serif" }} className="flex flex-col text-white text-[8px] leading-tight">
+                  <p>CLAIM</p>
+                  <p>UP TO</p>
+                </div>
+                <p style={{ fontFamily: "'Imprint MT Shadow', serif" }} className="text-white text-[28px] sm:text-[32px] leading-none">3000</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Desktop: original absolute-positioned text (unchanged) */}
+          <p style={{ fontFamily: "'House of Montague', serif", left: "calc(50% - 400.5px)", top: "calc(50% - 62px)" }} className="hidden lg:block absolute -translate-x-1/2 text-[32px] text-center text-white w-[477px]">
+            {"India's Largest Premium Silver Destination"}
+          </p>
+          <p style={{ fontFamily: "'Futura PT', sans-serif", left: "calc(50% - 400.5px)", top: "calc(50% + 20px)" }} className="hidden lg:block absolute -translate-x-1/2 text-[16px] text-center text-white w-[477px]">
+            Join the Goyaz Inner Circle. Get early access to new collections and exclusive bridal offers.
+          </p>
+          <p style={{ fontFamily: "'House of Montague', serif", left: "calc(50% + 417px)", top: "calc(50% - 79.5px)" }} className="hidden lg:block absolute -translate-x-1/2 text-[48px] text-center text-white w-[330px]">
+            MOTHER&apos;S DAY
+          </p>
+          <p style={{ fontFamily: "'House of Montague', serif", left: "calc(50% + 554px)", top: "calc(50% - 26px)" }} className="hidden lg:block absolute -translate-x-1/2 text-[24px] text-center text-white w-[72px]">
+            OFFER
+          </p>
+          <p style={{ fontFamily: "'House of Montague', serif", left: "calc(50% + 308px)", top: "calc(50% + 13px)" }} className="hidden lg:block absolute -translate-x-1/2 text-[40px] text-center text-white w-[112px]">
+            CLAIM
+          </p>
+          <p style={{ fontFamily: "'House of Montague', serif", left: "calc(50% + 286px)", top: "calc(50% + 62px)" }} className="hidden lg:block absolute -translate-x-1/2 text-[24px] text-center text-white w-[68px]">
+            UP TO
+          </p>
+          <p style={{ fontFamily: "'House of Montague', serif", left: "calc(50% + 573px)", top: "calc(50% + 93px)" }} className="hidden lg:block absolute -translate-x-1/2 text-[24px] text-center text-white w-[34px]">
+            RS
+          </p>
+          <p style={{ fontFamily: "'Imprint MT Shadow', serif", left: "calc(50% + 479.5px)", top: "calc(50% - 11px)" }} className="hidden lg:block absolute -translate-x-1/2 text-[96px] text-center text-white h-[104px] w-[205px]">
+            3000
+          </p>
+        </div>
+
+        {/* Bottom SVG stamp — 89×24 on mobile, 275×73 on desktop */}
+        <div className="lg:hidden relative" style={{ height: 24, width: 89 }}>
+          <img alt="" className="absolute inset-0 w-full h-full" src={group8} loading="lazy" decoding="async" />
+        </div>
+        <div className="hidden lg:block relative" style={{ height: 72.862, width: 274.765 }}>
+          <img alt="" className="absolute inset-0 w-full h-full" src={group8} loading="lazy" decoding="async" />
+        </div>
+      </ScrollRevealWrapper>
+    </section>
+  );
+}

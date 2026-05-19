@@ -1,26 +1,453 @@
 @import "tailwindcss";
 
+/* ─────────────────────────────────────────────
+   DESIGN TOKENS — single source of truth
+   consumed by every micro-frontend shell
+───────────────────────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand palette */
+  --color-bg:           #ffffff;
+  --color-fg:           #0a0a0a;
+  --color-primary:      #013809;
+  --color-primary-mid:  #007311;
+  --color-accent:       #083c30;
+  --color-dark:         #002f00;
+  --color-muted:        #f5f5f5;
+  --color-overlay:      rgba(0, 0, 0, 0.35);
+
+  /* Typography scale */
+  --font-display:   'House of Montague', 'Georgia', serif;
+  --font-script:    'Nostalgic Whispers', cursive;
+  --font-body:      'Futura PT', 'Futura PT Book', 'Century Gothic', sans-serif;
+  --font-body-med:  'Futura PT Medium', 'Futura PT', sans-serif;
+  --font-stamp:     'Imprint MT Shadow', serif;
+  --font-ui:        'Noto Sans', sans-serif;
+
+  --text-xs:   0.75rem;   /* 12px */
+  --text-sm:   0.875rem;  /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg:   1.25rem;   /* 20px */
+  --text-xl:   1.5rem;    /* 24px */
+  --text-2xl:  2rem;      /* 32px */
+  --text-3xl:  2.5rem;    /* 40px */
+  --text-4xl:  3rem;      /* 48px */
+  --text-hero: 6rem;      /* 96px */
+
+  /* Spacing scale (4-pt grid) */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;   /* section gap */
+  --space-20: 5rem;   /* hero padding */
+
+  /* Border */
+  --radius-card: 1.875rem;  /* 30px */
+  --radius-pill: 3.5rem;    /* 56px */
+  --border-brand: 0.5px solid var(--color-accent);
+
+  /* Shadows */
+  --shadow-card:  0 4px 24px rgba(0, 0, 0, 0.08);
+  --shadow-btn:   inset 2px -2px 4px rgba(0, 0, 0, 0.25);
+  --shadow-arrow: -1px -1px 2px rgba(0, 0, 0, 0.25);
+
+  /* Layout */
+  --layout-max:   1440px;
+  --layout-gutter: 40px;
+  --navbar-h:     80px;
+  --hero-h:       840px;
+  --card-sm:      325px;
+  --card-md:      426px;
+  --card-lg:      640px;
+
+  /* Motion */
+  --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
+  --duration:  300ms;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+/* ─────────────────────────────────────────────
+   RESPONSIVE TOKEN OVERRIDES
+───────────────────────────────────────────── */
+@media (max-width: 639px) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --layout-gutter: 16px;
+    --navbar-h:      60px;
+    --hero-h:        100svh;
+    --text-hero:     2.5rem;
+  }
+}
+@media (min-width: 640px) and (max-width: 1023px) {
+  :root {
+    --layout-gutter: 24px;
+    --navbar-h:      70px;
+    --hero-h:        75svh;
+    --text-hero:     4rem;
   }
 }
 
+/* ─────────────────────────────────────────────
+   THEME MAP → Tailwind v4 arbitrary value bridge
+───────────────────────────────────────────── */
+@theme inline {
+  --color-background: var(--color-bg);
+  --color-foreground: var(--color-fg);
+  --color-primary:    var(--color-primary);
+  --color-accent:     var(--color-accent);
+  --font-sans:        var(--font-body);
+  --font-display:     var(--font-display);
+}
+
+/* ─────────────────────────────────────────────
+   MICRO-FRONTEND ISOLATION LAYER
+   Each [data-mfe] zone gets its own stacking
+   context so shells never bleed into each other.
+───────────────────────────────────────────── */
+[data-mfe] {
+  isolation: isolate;
+  contain: layout style;
+}
+
+/* Named MFE zones */
+[data-mfe="navbar"]   { z-index: 100; }
+[data-mfe="hero"]     { z-index: 10;  }
+[data-mfe="main"]     { z-index: 1;   }
+[data-mfe="section"]  { z-index: 1;   }
+[data-mfe="footer"]   { z-index: 1;   }
+
+/* Global section framing: 40px side gutters + centered content */
+section[data-mfe="section"] {
+  padding-inline: var(--layout-gutter);
+  align-items: center;
+}
+
+section[data-mfe="section"] > * {
+  width: 100%;
+  max-width: calc(var(--layout-max) - (var(--layout-gutter) * 2));
+  margin-inline: auto;
+}
+
+/* ─────────────────────────────────────────────
+   SHELL RESET
+───────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-fg);
+  font-family: var(--font-body);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+/* ─────────────────────────────────────────────
+   1440px DESKTOP CONTAINER SYSTEM
+   Matches the Figma desktop frame exactly.
+   Use .layout-container inside full-bleed sections
+   to constrain content to the design width.
+───────────────────────────────────────────── */
+#mfe-viewport {
+  width: 100%;
+}
+
+.layout-container {
+  width: 100%;
+  max-width: var(--layout-max);
+  margin-inline: auto;
+  padding-inline: var(--layout-gutter);
+}
+
+/* Inner content wrapper — no extra gutter (already on parent) */
+.layout-inner {
+  width: 100%;
+  max-width: calc(var(--layout-max) - (var(--layout-gutter) * 2));
+  margin-inline: auto;
+}
+
+/* ─────────────────────────────────────────────
+   GLOBAL COMPONENT PRIMITIVES
+───────────────────────────────────────────── */
+
+/* Card */
+.card {
+  border: var(--border-brand);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform var(--duration) var(--ease-out),
+              box-shadow var(--duration) var(--ease-out);
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* Ghost CTA button */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-10);
+  border: 1px solid currentColor;
+  font-family: var(--font-body);
+  font-size: var(--text-xl);
+  line-height: 1;
+  cursor: pointer;
+  transition: background var(--duration) var(--ease-out),
+              color var(--duration) var(--ease-out);
+  white-space: nowrap;
+}
+.btn-ghost:hover {
+  background: var(--color-fg);
+  color: var(--color-bg);
+}
+
+/* Slider track */
+.slider-track {
+  position: relative;
+  height: 11px;
+  border-radius: 5.5px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: var(--shadow-btn);
+}
+.slider-thumb {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 5px;
+  border-radius: 2.5px;
+  background: var(--color-dark);
+  box-shadow: -2px 2px 4px rgba(255, 255, 255, 0.25);
+}
+
+/* Section heading */
+.section-heading {
+  font-family: var(--font-body-med);
+  font-size: var(--text-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-fg);
+}
+
+/* Video fill */
+.video-fill {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* ─────────────────────────────────────────────
+   UTILITY OVERRIDES
+───────────────────────────────────────────── */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+video {
+  display: block;
+}
+
+/* Scroll indicator fade */
+@keyframes bounce-y {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(4px); }
+}
+.scroll-indicator {
+  animation: bounce-y 2s var(--ease-out) infinite;
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes slideInFromLeft {
+  from { opacity: 0; transform: translateX(-150px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInFromRight {
+  from { opacity: 0; transform: translateX(150px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-slide-in-left {
+  visibility: visible;
+  animation: slideInFromLeft 1.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-slide-in-right {
+  visibility: visible;
+  animation: slideInFromRight 1.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-slide-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes heroMarqueeReveal {
+  from { opacity: 0; transform: translateX(4%); }
+  to { opacity: 0.82; transform: translateX(0); }
+}
+
+@keyframes heroMarqueeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes heroSequenceAdvance {
+  0% { transform: translateX(0); }
+  30% { transform: translateX(0); }
+  50% { transform: translateX(-100vw); }
+  70% { transform: translateX(-100vw); }
+  90% { transform: translateX(-200vw); }
+  100% { transform: translateX(-200vw); }
+}
+
+.hero-sequence {
+  overflow: hidden;
+}
+
+.hero-sequence-track {
+  display: flex;
+  height: 100%;
+}
+
+.hero-sequence-slide {
+  width: 100%;
+  height: 100%;
+  flex-shrink: 0;
+}
+
+/* ── Nav menu panel ── */
+@keyframes navMenuSlideIn {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(0); }
+}
+@keyframes navMenuSlideOut {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+
+/* ── Backdrop ── */
+@keyframes navBackdropIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes navBackdropOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+/* ── List items — slide up from below ── */
+@keyframes navItemSlideUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Sub-category items — slide from left ── */
+@keyframes navItemSlideRight {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Product cards ── */
+@keyframes navCardReveal {
+  from { opacity: 0; transform: scale(0.94); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── Featured image ── */
+@keyframes navImageReveal {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes full-width {
+  from { width: 0; }
+  to   { width: 880px; }
+}
+@keyframes navChildPanelRise {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes navChildListIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes navChildCardsIn {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Cart Sidebar ── */
+@keyframes cartDrawerSlideIn {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+@keyframes cartDrawerSlideOut {
+  from { transform: translateX(0); }
+  to   { transform: translateX(100%); }
+}
+@keyframes cartBackdropIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes cartBackdropOut {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+@keyframes cartItemSlideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.nav-menu-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #ffffff #bcbcbc;
+}
+
+.nav-menu-scrollbar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.nav-menu-scrollbar::-webkit-scrollbar-track {
+  background: #bcbcbc;
+  border-radius: 999px;
+  box-shadow: inset -1px 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.nav-menu-scrollbar::-webkit-scrollbar-thumb {
+  background: #ffffff;
+  border-radius: 999px;
+  border: 2px solid #bcbcbc;
 }

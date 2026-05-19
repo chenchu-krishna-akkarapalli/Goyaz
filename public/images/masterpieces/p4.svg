@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+  <defs>
+    <linearGradient id="g4" x1="1" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#5a1f2f"/>
+      <stop offset="100%" stop-color="#230d12"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="800" fill="url(#g4)"/>
+  <path d="M190 450c95-185 325-185 420 0" fill="none" stroke="#ffd6c2" stroke-width="14"/>
+  <circle cx="400" cy="450" r="52" fill="none" stroke="#ffe8df" stroke-width="10"/>
+  <text x="400" y="705" font-size="34" text-anchor="middle" fill="#ffe8df" font-family="Arial">KUNDAN BRIDAL</text>
+</svg>
