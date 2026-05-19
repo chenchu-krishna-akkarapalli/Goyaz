@@ -69,21 +69,15 @@ export function BrandStorySection() {
 
           {/* Text column */}
           <div className="flex-1 min-w-0 flex flex-col gap-[10px] items-center">
-            <p
-              style={{ fontFamily: "'Futura PT', sans-serif" }}
-              className="text-[8px] font-medium text-black text-center uppercase w-full leading-snug"
-            >
+            <p className="font-sans text-[8px] font-medium text-black text-center uppercase w-full leading-snug">
               Loved by Brides Across India
             </p>
-            <div
-              style={{ fontFamily: "'Futura PT', sans-serif" }}
-              className="text-[5px] text-black text-center uppercase w-full leading-[1.45]"
-            >
+            <div className="font-sans text-[5px] text-black text-center uppercase w-full leading-[1.45]">
               <p className="mb-[4px]">From intimate pre-wedding rituals to the grandeur of the mandap, Goyaz has been the trusted choice for countless brides. We believe that your bridal jewelry should be as unforgettable as the day itself. See how women are styling our intricate Nakshi and brilliant Polki silver masterpieces to complete their dream trousseau&mdash;achieving the rich, regal aesthetic of traditional gold, crafted purely in premium 92.5 silver. Become part of our legacy and let our heirlooms witness your most cherished milestones.</p>
               <p>Our jewelry isn&apos;t simply manufactured, it is sculpted. Each piece is brought to life by master karigars (artisans) who have spent generations perfecting the ancient arts of Nakshi, Kundan, and Victorian jewelry. From the deep, dimensional carving of temple motifs to the precision setting of premium moissanites and Russian emeralds, every detail is meticulously finished with 24k gold micron plating. The result is a flawless, royal gleam that rivals pure gold.</p>
             </div>
             <div className="bg-white border border-black flex items-center justify-center px-[16px] py-[8px] cursor-pointer hover:bg-black hover:text-white transition-colors group w-full max-w-[120px]">
-              <span style={{ fontFamily: "'Futura PT', sans-serif" }} className="text-[8px] text-black group-hover:text-white whitespace-nowrap">Discover More</span>
+              <span className="font-sans text-[8px] text-black group-hover:text-white whitespace-nowrap">Discover More</span>
             </div>
           </div>
         </div>
@@ -115,7 +109,7 @@ export function BrandStorySection() {
         {/* Desktop: text (unchanged) */}
         <div className="hidden lg:flex w-full flex-col items-center lg:absolute lg:right-0 lg:top-[48px] lg:w-[560px]">
           <ScrollRevealWrapper delay={200}>
-            <div style={{ fontFamily: "'Futura PT', sans-serif" }} className="flex flex-col gap-[20px] items-center px-[10px] py-[40px] text-black text-center uppercase w-full">
+            <div className="font-sans flex flex-col gap-[20px] items-center px-[10px] py-[40px] text-black text-center uppercase w-full">
               <p className="text-[20px] font-medium w-full">Loved by Brides Across India</p>
               <div className="text-[14px] w-full">
                 <p className="mb-1">From intimate pre-wedding rituals to the grandeur of the mandap, Goyaz has been the trusted choice for countless brides. We believe that your bridal jewelry should be as unforgettable as the day itself. See how women are styling our intricate Nakshi and brilliant Polki silver masterpieces to complete their dream trousseau&mdash;achieving the rich, regal aesthetic of traditional gold, crafted purely in premium 92.5 silver. Become part of our legacy and let our heirlooms witness your most cherished milestones.</p>
@@ -125,7 +119,7 @@ export function BrandStorySection() {
           </ScrollRevealWrapper>
           <ScrollRevealWrapper delay={400}>
             <div className="bg-white border border-black flex items-center px-[40px] py-[18px] cursor-pointer transition-all duration-300 hover:bg-black hover:text-white group">
-              <span style={{ fontFamily: "'Futura PT', sans-serif" }} className="text-[24px] text-black group-hover:text-white whitespace-nowrap">Discover More</span>
+              <span className="font-sans text-[24px] text-black group-hover:text-white whitespace-nowrap">Discover More</span>
             </div>
           </ScrollRevealWrapper>
         </div>
@@ -139,21 +133,15 @@ export function BrandStorySection() {
 
           {/* Text column */}
           <div className="flex-1 min-w-0 flex flex-col gap-[10px] items-center">
-            <p
-              style={{ fontFamily: "'Futura PT', sans-serif" }}
-              className="text-[8px] font-medium text-black text-center uppercase w-full leading-snug"
-            >
+            <p className="font-sans text-[8px] font-medium text-black text-center uppercase w-full leading-snug">
               Crafted by Master Karigars
             </p>
-            <div
-              style={{ fontFamily: "'Futura PT', sans-serif" }}
-              className="text-[5px] text-black text-center uppercase w-full leading-[1.45]"
-            >
+            <div className="font-sans text-[5px] text-black text-center uppercase w-full leading-[1.45]">
               <p className="mb-[4px]">Every Goyaz piece begins as a hand-drawn idea and is shaped through time-honored craftsmanship. Our karigars preserve heritage techniques across Nakshi, Kundan, and temple-inspired artistry, creating jewelry that feels traditional yet unmistakably modern for today&apos;s celebrations.</p>
               <p>From precise stone setting to rich 24k gold micron finishing, each detail is executed by hand with meticulous care. This devotion to process gives every piece its royal depth, brilliant sparkle, and heirloom quality designed to be treasured across generations.</p>
             </div>
             <div className="bg-white border border-black flex items-center justify-center px-[16px] py-[8px] cursor-pointer hover:bg-black hover:text-white transition-colors group w-full max-w-[120px]">
-              <span style={{ fontFamily: "'Futura PT', sans-serif" }} className="text-[8px] text-black group-hover:text-white whitespace-nowrap">Discover More</span>
+              <span className="font-sans text-[8px] text-black group-hover:text-white whitespace-nowrap">Discover More</span>
             </div>
           </div>
 
@@ -190,7 +178,7 @@ export function BrandStorySection() {
         <div className="hidden lg:inline-grid relative" style={{ gridTemplateColumns: "max-content", gridTemplateRows: "max-content" }}>
           <div style={{ gridColumn: 1, gridRow: 1, position: "relative" }} className="flex flex-col items-center w-[560px] mt-14">
             <ScrollRevealWrapper delay={200}>
-              <div style={{ fontFamily: "'Futura PT', sans-serif" }} className="flex flex-col gap-[20px] items-center px-[10px] py-[40px] text-black text-center uppercase w-full">
+              <div className="font-sans flex flex-col gap-[20px] items-center px-[10px] py-[40px] text-black text-center uppercase w-full">
                 <p className="text-[20px] font-medium w-full">Crafted by Master Karigars</p>
                 <div className="text-[14px] w-full">
                   <p className="mb-1">Every Goyaz piece begins as a hand-drawn idea and is shaped through time-honored craftsmanship. Our karigars preserve heritage techniques across Nakshi, Kundan, and temple-inspired artistry, creating jewelry that feels traditional yet unmistakably modern for today&apos;s celebrations.</p>
@@ -200,7 +188,7 @@ export function BrandStorySection() {
             </ScrollRevealWrapper>
             <ScrollRevealWrapper delay={400}>
               <div className="bg-white border border-black flex items-center px-[40px] py-[18px] cursor-pointer transition-all duration-300 hover:bg-black hover:text-white group">
-                <span style={{ fontFamily: "'Futura PT', sans-serif" }} className="text-[24px] text-black group-hover:text-white whitespace-nowrap">Discover More</span>
+                <span className="font-sans text-[24px] text-black group-hover:text-white whitespace-nowrap">Discover More</span>
               </div>
             </ScrollRevealWrapper>
           </div>
@@ -233,51 +221,51 @@ export function BrandStorySection() {
           {/* Mobile: two-column layout — brand message LEFT · promo RIGHT */}
           <div className="lg:hidden absolute inset-0 flex items-center px-[16px] gap-3">
             <div className="flex flex-col gap-[6px] items-start flex-1 min-w-0">
-              <p style={{ fontFamily: "'House of Montague', serif" }} className="text-[14px] sm:text-[17px] text-white leading-tight">
+              <p className="font-display text-[14px] sm:text-[17px] text-white leading-tight">
                 {"India's Largest Premium Silver Destination"}
               </p>
-              <p style={{ fontFamily: "'Futura PT', sans-serif" }} className="text-[5px] sm:text-[11px] text-white/80 leading-tight">
+              <p className="font-sans text-[5px] sm:text-[11px] text-white/80 leading-tight">
                 Join the Goyaz Inner Circle. Get early access to new collections and exclusive bridal offers.
               </p>
             </div>
             <div className="flex flex-col items-end flex-shrink-0 gap-[3px]">
-              <div style={{ fontFamily: "'House of Montague', serif" }} className="flex flex-col items-end text-white">
+              <div className="font-display flex flex-col items-end text-white">
                 <p className="text-[13px] sm:text-[15px] text-center">MOTHER&apos;S DAY</p>
                 <p className="text-[8px] text-right">OFFER</p>
               </div>
               <div className="flex items-end gap-[2px]">
-                <div style={{ fontFamily: "'House of Montague', serif" }} className="flex flex-col text-white text-[8px] leading-tight">
+                <div className="font-display flex flex-col text-white text-[8px] leading-tight">
                   <p>CLAIM</p>
                   <p>UP TO</p>
                 </div>
-                <p style={{ fontFamily: "'Imprint MT Shadow', serif" }} className="text-white text-[28px] sm:text-[32px] leading-none">3000</p>
+                <p className="font-stamp text-white text-[28px] sm:text-[32px] leading-none">3000</p>
               </div>
             </div>
           </div>
 
           {/* Desktop: original absolute-positioned text (unchanged) */}
-          <p style={{ fontFamily: "'House of Montague', serif", left: "calc(50% - 400.5px)", top: "calc(50% - 62px)" }} className="hidden lg:block absolute -translate-x-1/2 text-[32px] text-center text-white w-[477px]">
+          <p className="font-display hidden lg:block absolute -translate-x-1/2 text-[32px] text-center text-white w-[477px]" style={{ left: "calc(50% - 400.5px)", top: "calc(50% - 62px)" }}>
             {"India's Largest Premium Silver Destination"}
           </p>
-          <p style={{ fontFamily: "'Futura PT', sans-serif", left: "calc(50% - 400.5px)", top: "calc(50% + 20px)" }} className="hidden lg:block absolute -translate-x-1/2 text-[16px] text-center text-white w-[477px]">
+          <p className="font-sans hidden lg:block absolute -translate-x-1/2 text-[16px] text-center text-white w-[477px]" style={{ left: "calc(50% - 400.5px)", top: "calc(50% + 20px)" }}>
             Join the Goyaz Inner Circle. Get early access to new collections and exclusive bridal offers.
           </p>
-          <p style={{ fontFamily: "'House of Montague', serif", left: "calc(50% + 417px)", top: "calc(50% - 79.5px)" }} className="hidden lg:block absolute -translate-x-1/2 text-[48px] text-center text-white w-[330px]">
+          <p className="font-display hidden lg:block absolute -translate-x-1/2 text-[48px] text-center text-white w-[330px]" style={{ left: "calc(50% + 417px)", top: "calc(50% - 79.5px)" }}>
             MOTHER&apos;S DAY
           </p>
-          <p style={{ fontFamily: "'House of Montague', serif", left: "calc(50% + 554px)", top: "calc(50% - 26px)" }} className="hidden lg:block absolute -translate-x-1/2 text-[24px] text-center text-white w-[72px]">
+          <p className="font-display hidden lg:block absolute -translate-x-1/2 text-[24px] text-center text-white w-[72px]" style={{ left: "calc(50% + 554px)", top: "calc(50% - 26px)" }}>
             OFFER
           </p>
-          <p style={{ fontFamily: "'House of Montague', serif", left: "calc(50% + 308px)", top: "calc(50% + 13px)" }} className="hidden lg:block absolute -translate-x-1/2 text-[40px] text-center text-white w-[112px]">
+          <p className="font-display hidden lg:block absolute -translate-x-1/2 text-[40px] text-center text-white w-[112px]" style={{ left: "calc(50% + 308px)", top: "calc(50% + 13px)" }}>
             CLAIM
           </p>
-          <p style={{ fontFamily: "'House of Montague', serif", left: "calc(50% + 286px)", top: "calc(50% + 62px)" }} className="hidden lg:block absolute -translate-x-1/2 text-[24px] text-center text-white w-[68px]">
+          <p className="font-display hidden lg:block absolute -translate-x-1/2 text-[24px] text-center text-white w-[68px]" style={{ left: "calc(50% + 286px)", top: "calc(50% + 62px)" }}>
             UP TO
           </p>
-          <p style={{ fontFamily: "'House of Montague', serif", left: "calc(50% + 573px)", top: "calc(50% + 93px)" }} className="hidden lg:block absolute -translate-x-1/2 text-[24px] text-center text-white w-[34px]">
+          <p className="font-display hidden lg:block absolute -translate-x-1/2 text-[24px] text-center text-white w-[34px]" style={{ left: "calc(50% + 573px)", top: "calc(50% + 93px)" }}>
             RS
           </p>
-          <p style={{ fontFamily: "'Imprint MT Shadow', serif", left: "calc(50% + 479.5px)", top: "calc(50% - 11px)" }} className="hidden lg:block absolute -translate-x-1/2 text-[96px] text-center text-white h-[104px] w-[205px]">
+          <p className="font-stamp hidden lg:block absolute -translate-x-1/2 text-[96px] text-center text-white h-[104px] w-[205px]" style={{ left: "calc(50% + 479.5px)", top: "calc(50% - 11px)" }}>
             3000
           </p>
         </div>

@@ -124,10 +124,7 @@ export function MasterpiecesForEveryOccasionSection() {
                 className="flex flex-col gap-[5px] items-center w-[54px] flex-shrink-0 cursor-pointer"
                 onClick={() => setSelectedCategory(category)}
               >
-                <span
-                  style={{ fontFamily: "'Futura PT', sans-serif" }}
-                  className={`text-[16px] text-black uppercase leading-[81.7%] w-full ${selectedCategory === category ? "font-bold" : "font-medium"}`}
-                >
+                <span className={`font-sans text-[16px] text-black uppercase leading-[81.7%] w-full ${selectedCategory === category ? "font-bold" : "font-medium"}`}>
                   {category}
                 </span>
                 <div className="relative h-px w-full">
@@ -135,10 +132,7 @@ export function MasterpiecesForEveryOccasionSection() {
                     <img alt="" className="block h-full w-full" src={MASTERPIECE_LINE_IMAGE} loading="lazy" decoding="async" />
                   )}
                 </div>
-                <span
-                  style={{ fontFamily: "'Futura PT', sans-serif" }}
-                  className="text-[8px] text-black text-center tracking-[0.32px] font-medium w-full"
-                >
+                <span className="font-sans text-[8px] text-black text-center tracking-[0.32px] font-medium w-full">
                   {selectedCategory === category ? "SEE ALL" : ""}
                 </span>
               </div>

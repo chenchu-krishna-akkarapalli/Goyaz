@@ -32,10 +32,7 @@ export function PageHeader({
 
           {/* Left — subtitle + title (optionally with count) */}
           <DirectionalReveal direction="left">
-            <div
-              className="flex flex-col gap-[16px] lg:gap-[30px] items-start text-(--color-dark) leading-[96.8%]"
-              style={{ fontFamily: "'Futura PT', sans-serif" }}
-            >
+            <div className="font-sans flex flex-col gap-[16px] lg:gap-[30px] items-start text-(--color-dark) leading-[96.8%]">
               {subtitle && (
                 <p className="text-[14px] lg:text-[16px]">{subtitle}</p>
               )}

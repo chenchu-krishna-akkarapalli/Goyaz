@@ -24,7 +24,7 @@ export function CurrentObsessionsSection() {
                   decoding="async"
                 />
               </div>
-              <p style={{ fontFamily: "'Futura PT', sans-serif" }} className="text-[16px] text-black text-center leading-[96.8%] w-full">{label}</p>
+              <p className="font-sans text-[16px] text-black text-center leading-[96.8%] w-full">{label}</p>
             </div>
           );
 

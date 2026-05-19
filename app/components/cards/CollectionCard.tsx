@@ -48,23 +48,17 @@ export function CollectionCard({ id, imageSrc, title, price, wide = false, categ
             e.stopPropagation();
             addItem({ id, title, price, imageSrc });
           }}
-          className={`absolute bottom-0 left-0 right-0 bg-[rgba(255,255,255,0.85)] backdrop-blur-sm h-[41px] flex items-center justify-center gap-[10px] rounded-bl-[30px] rounded-br-[30px] cursor-pointer hover:bg-white ${ANIMATION_CLASSES.cartBarHidden} ${ANIMATION_CLASSES.cartBarReveal}`}
+          className={`cart-bar-bg absolute bottom-0 left-0 right-0 h-[41px] flex items-center justify-center gap-[10px] rounded-bl-[30px] rounded-br-[30px] cursor-pointer ${ANIMATION_CLASSES.cartBarHidden} ${ANIMATION_CLASSES.cartBarReveal}`}
         >
           <CartIcon />
-          <p
-            style={{ fontFamily: "'Futura PT', sans-serif" }}
-            className="text-[#002f00] text-[12px] text-center whitespace-nowrap leading-[96.8%]"
-          >
+          <p className="font-sans text-[#002f00] text-brand-xs text-center whitespace-nowrap leading-[96.8%]">
             Add to Cart
           </p>
         </button>
       </div>
-      <div
-        style={{ fontFamily: "'Futura PT', sans-serif" }}
-        className="flex flex-col gap-[10px] items-center text-[#002f00] w-full py-[10px] px-[16px] lg:px-[40px]"
-      >
-        <p className="text-[16px] text-center uppercase leading-[96.8%] w-full">{title}</p>
-        <div className="flex gap-[5px] items-center text-[14px] whitespace-nowrap">
+      <div className="font-sans flex flex-col gap-[10px] items-center text-[#002f00] w-full py-[10px] px-[16px] lg:px-[40px]">
+        <p className="text-brand-base text-center uppercase leading-[96.8%] w-full">{title}</p>
+        <div className="flex gap-[5px] items-center text-brand-sm whitespace-nowrap">
           <span>starting from</span>
           <span>{price}</span>
         </div>

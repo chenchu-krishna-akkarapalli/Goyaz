@@ -80,23 +80,16 @@ function BrandPanel() {
       />
       <div className="absolute inset-0 bg-[rgba(0,18,0,0.45)]" />
       <div className="relative z-10 flex flex-col items-center gap-5 px-10">
-        <p
-          className="text-[32px] text-center text-white leading-normal max-w-[477px]"
-          style={{ fontFamily: "'House of Montague', Georgia, serif" }}
-        >
+        <p className="font-display text-[32px] text-center text-white leading-normal max-w-[477px]">
           {"India's Largest Premium Silver Destination"}
         </p>
-        <p
-          className="text-[16px] text-center text-white/85 leading-normal max-w-[477px]"
-          style={{ fontFamily: "'Futura PT', sans-serif" }}
-        >
+        <p className="font-sans text-[16px] text-center text-white/85 leading-normal max-w-[477px]">
           Join the Goyaz Inner Circle. Get early access to new collections and
           exclusive bridal offers.
         </p>
         <button
-          className="bg-white text-(--color-dark) border border-(--color-dark) px-[24px] py-[14px] lg:px-[40px] lg:py-[18px] text-[16px] lg:text-[24px] mt-5 hover:bg-(--color-dark) hover:text-white transition-colors"
+          className="font-sans bg-white text-(--color-dark) border border-(--color-dark) px-[24px] py-[14px] lg:px-[40px] lg:py-[18px] text-[16px] lg:text-[24px] mt-5 hover:bg-(--color-dark) hover:text-white transition-colors"
           type="button"
-          style={{ fontFamily: "'Futura PT', sans-serif" }}
         >
           Discover More
         </button>
@@ -232,10 +225,7 @@ export default async function CollectionPage({ params }: Props) {
         count={products.length}
         rightSlot={
           <div className="flex flex-col gap-[3px] items-start cursor-pointer group">
-            <p
-              className="text-(--color-dark) text-[16px] leading-[96.8%] group-hover:opacity-70 transition-opacity"
-              style={{ fontFamily: "'Futura PT', sans-serif" }}
-            >
+            <p className="font-sans text-(--color-dark) text-[16px] leading-[96.8%] group-hover:opacity-70 transition-opacity">
               Filters &amp; Sorting
             </p>
             <div className="w-full h-[1px] bg-(--color-dark)" />

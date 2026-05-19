@@ -56,18 +56,8 @@ export default function CollectionsIndexPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-[rgba(0,20,0,0.75)] via-transparent to-transparent" />
                   {/* Label */}
                   <div className="absolute bottom-0 left-0 right-0 p-[24px] flex flex-col gap-[4px]">
-                    <p
-                      className="text-white text-[24px] leading-none"
-                      style={{ fontFamily: "'House of Montague', Georgia, serif" }}
-                    >
-                      {cat}
-                    </p>
-                    <p
-                      className="text-white/70 text-[14px]"
-                      style={{ fontFamily: "'Futura PT', sans-serif" }}
-                    >
-                      {count} pieces
-                    </p>
+                    <p className="font-display text-white text-[24px] leading-none">{cat}</p>
+                    <p className="font-sans text-white/70 text-[14px]">{count} pieces</p>
                   </div>
                 </Link>
               );

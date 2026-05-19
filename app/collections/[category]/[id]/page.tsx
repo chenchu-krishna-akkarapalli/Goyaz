@@ -55,8 +55,7 @@ export default async function ProductPage({
         rightSlot={
           <Link
             href={`/collections/${category}`}
-            className="text-[16px] uppercase tracking-[0.28em] text-[#002f00] hover:opacity-70 transition-opacity"
-            style={{ fontFamily: "'Futura PT', sans-serif" }}
+            className="font-sans text-[16px] uppercase tracking-[0.28em] text-[#002f00] hover:opacity-70 transition-opacity"
           >
             View {product.category} Collection
           </Link>
@@ -82,22 +81,13 @@ export default async function ProductPage({
             <div className="flex flex-col gap-10">
               <ScrollRevealWrapper variant="up" delay={100}>
                 <div className="flex flex-col gap-5">
-                  <p
-                    className="text-[14px] uppercase tracking-[0.4em] text-[#002f00]/70"
-                    style={{ fontFamily: "'Futura PT', sans-serif" }}
-                  >
+                  <p className="font-sans text-[14px] uppercase tracking-[0.4em] text-[#002f00]/70">
                     {product.category}
                   </p>
-                  <h1
-                    className="text-[48px] text-[#002f00] leading-[1.05]"
-                    style={{ fontFamily: "'House of Montague', Georgia, serif" }}
-                  >
+                  <h1 className="font-display text-[48px] text-[#002f00] leading-[1.05]">
                     {product.title}
                   </h1>
-                  <p
-                    className="text-[24px] text-[#002f00]/80 tracking-[0.01em]"
-                    style={{ fontFamily: "'Futura PT', sans-serif" }}
-                  >
+                  <p className="font-sans text-[24px] text-[#002f00]/80 tracking-[0.01em]">
                     {product.price}
                   </p>
                 </div>
@@ -105,10 +95,7 @@ export default async function ProductPage({
 
               <ScrollRevealWrapper variant="fade" delay={200}>
                 <div className="rounded-[30px] border border-[#002f00]/10 bg-[#ffffff] p-8 shadow-[0_28px_80px_rgba(0,0,0,0.08)]">
-                  <p
-                    className="text-[16px] text-[#0a0a0a]/80 leading-[1.75]"
-                    style={{ fontFamily: "'Futura PT', sans-serif" }}
-                  >
+                  <p className="font-sans text-[16px] text-[#0a0a0a]/80 leading-[1.75]">
                     Immerse yourself in the timeless elegance of the Goyaz {product.category} collection.
                     This exquisite {product.title.toLowerCase()} is handcrafted by our master karigars in 92.5
                     sterling silver. With heritage motifs and a rich vintage finish, it becomes an heirloom
@@ -119,8 +106,7 @@ export default async function ProductPage({
 
               <ScrollRevealWrapper variant="up" delay={300}>
                 <button
-                  className="w-full max-w-[420px] h-[60px] bg-[#002f00] text-white uppercase tracking-widest text-[16px] rounded-[30px] hover:bg-[#013809] transition-colors duration-300"
-                  style={{ fontFamily: "'Futura PT', sans-serif" }}
+                  className="font-sans w-full max-w-[420px] h-[60px] bg-[#002f00] text-white uppercase tracking-widest text-[16px] rounded-[30px] hover:bg-[#013809] transition-colors duration-300"
                 >
                   Add to Cart
                 </button>
@@ -135,8 +121,7 @@ export default async function ProductPage({
                   ].map((item) => (
                     <div
                       key={item}
-                      className="flex items-center justify-between px-8 py-5 text-[16px] uppercase text-[#002f00] border-b border-[#002f00]/10 last:border-b-0 cursor-pointer"
-                      style={{ fontFamily: "'Futura PT', sans-serif" }}
+                      className="font-sans flex items-center justify-between px-8 py-5 text-[16px] uppercase text-[#002f00] border-b border-[#002f00]/10 last:border-b-0 cursor-pointer"
                     >
                       <span>{item}</span>
                       <span>+</span>
@@ -150,10 +135,7 @@ export default async function ProductPage({
           {relatedProducts.length > 0 && (
             <div className="mt-28">
               <ScrollRevealWrapper variant="up">
-                <h2
-                  className="text-[40px] text-[#002f00] mb-12"
-                  style={{ fontFamily: "'House of Montague', Georgia, serif" }}
-                >
+                <h2 className="font-display text-[40px] text-[#002f00] mb-12">
                   You May Also Like
                 </h2>
               </ScrollRevealWrapper>

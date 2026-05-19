@@ -67,7 +67,6 @@ function contentSwapStyle(isOpen: boolean, reduced: boolean, delayMs = 0): CSSPr
 }
 
 const futuraFont: CSSProperties = {
-  fontFamily: "'Futura PT', 'Futura_PT:Book', sans-serif",
   lineHeight: "96.8%",
 };
 
@@ -196,7 +195,7 @@ export function NavMenu({ isOpen, onClose }: NavMenuProps) {
         className={`relative h-screen overflow-hidden bg-white w-full lg:w-[280px] ${panelClass}`}
         style={{ maxWidth: "100vw" }}
       >
-        <div className="relative h-full flex-none border-r border-black/10 bg-white w-full lg:w-[280px]">
+        <div className="font-sans relative h-full flex-none border-r border-black/10 bg-white w-full lg:w-[280px]">
           <button
             type="button"
             onClick={onClose}
@@ -281,7 +280,7 @@ export function NavMenu({ isOpen, onClose }: NavMenuProps) {
       {showChildPanes && activeSection && (
         <div
           key={`child-panel-${activeSection.id}`}
-          className={`hidden lg:flex relative h-screen overflow-hidden bg-white ${
+          className={`font-sans hidden lg:flex relative h-screen overflow-hidden bg-white ${
             reduced ? "" : ANIMATION_CLASSES.navChildPanelRise
           }`}
           style={{
@@ -354,10 +353,7 @@ export function NavMenu({ isOpen, onClose }: NavMenuProps) {
                     src={activeSection.featured.image}
                    loading="lazy" decoding="async" />
                   <div className="absolute bottom-[45px] right-[20px] flex w-[195px] flex-col items-end gap-[5px] text-center text-white">
-                    <p
-                      className="w-full text-[16px] uppercase"
-                      style={{ fontFamily: "'House of Montague', 'House_of_Montague:Regular', serif" }}
-                    >
+                    <p className="font-display w-full text-[16px] uppercase">
                       {activeSection.featured.title}
                     </p>
                     <p className="w-full text-[12px] uppercase" style={futuraFont}>
