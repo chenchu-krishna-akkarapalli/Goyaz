@@ -21,7 +21,7 @@ export default function Home() {
         <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-10 flex flex-col items-center gap-[12px] lg:gap-[20px] w-full px-4">
           <ScrollRevealWrapper className="flex flex-col items-center">
             <p
-              className="font-script w-[90vw] sm:w-[480px] lg:w-[574px] text-[22px] sm:text-[28px] lg:text-[32px] text-center text-transparent bg-clip-text"
+              className="font-allura w-[90vw] sm:w-[600px] lg:w-[800px] text-[40px] sm:text-[52px] lg:text-[64px] text-center text-transparent bg-clip-text"
               style={{ backgroundImage: "linear-gradient(59deg, rgb(255,255,255) 73.973%, rgb(32,226,200) 97.525%)" }}
             >
               Timeless Royalty, Crafted in Silver.

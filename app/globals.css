@@ -18,6 +18,7 @@
   /* Typography scale */
   --font-display:   'House of Montague', 'Georgia', serif;
   --font-script:    'Nostalgic Whispers', cursive;
+  --font-allura:    'Allura', cursive;
   --font-body:      'Futura PT', 'Futura PT Book', 'Century Gothic', sans-serif;
   --font-body-med:  'Futura PT Medium', 'Futura PT', sans-serif;
   --font-stamp:     'Imprint MT Shadow', serif;
@@ -105,6 +106,7 @@
   --font-body-med:    var(--font-body-med);
   --font-display:     var(--font-display);
   --font-script:      var(--font-script);
+  --font-allura:      var(--font-allura);
   --font-stamp:       var(--font-stamp);
   --font-ui:          var(--font-ui);
 
@@ -435,6 +437,14 @@ video {
 @keyframes navChildCardsIn {
   from { opacity: 0; transform: translateY(26px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes navChildPanelSlideInRight {
+  from { opacity: 0; transform: translateX(100%); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes navChildPanelSlideOutRight {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(100%); }
 }
 
 /* ── Cart Sidebar ── */

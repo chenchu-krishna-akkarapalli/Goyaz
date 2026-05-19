@@ -26,8 +26,8 @@ export function MasterpieceNormalCard({ id, imageSrc, title, price }: Masterpiec
   const productId = id ?? `masterpiece-${title.replace(/\s+/g, "-").toLowerCase()}`;
 
   return (
-    <div className={`flex flex-col gap-[10px] items-center w-[325px] shrink-0 ${ANIMATION_CLASSES.hoverZoomBase}`}>
-      <div className="border-[#083c30] border-[0.5px] border-solid h-[325px] relative rounded-[30px] w-full overflow-hidden">
+    <div className={`flex flex-col gap-[10px] items-center w-[220px] sm:w-[270px] lg:w-[325px] shrink-0 ${ANIMATION_CLASSES.hoverZoomBase}`}>
+      <div className="border-[#083c30] border-[0.5px] border-solid aspect-square relative rounded-[30px] w-full overflow-hidden">
         <img
           alt=""
           className={`absolute inset-0 object-cover w-full h-full rounded-[30px] ${ANIMATION_CLASSES.hoverZoomImg}`}
@@ -54,7 +54,7 @@ export function MasterpieceNormalCard({ id, imageSrc, title, price }: Masterpiec
           </p>
         </button>
       </div>
-      <div className="font-sans flex flex-col gap-[10px] items-center text-black w-[240px]">
+      <div className="font-sans flex flex-col gap-[10px] items-center text-black w-full">
         <p className="text-brand-base text-center uppercase leading-[96.8%]">{title}</p>
         <div className="flex gap-[5px] items-center text-brand-sm whitespace-nowrap">
           <span>starting from</span>

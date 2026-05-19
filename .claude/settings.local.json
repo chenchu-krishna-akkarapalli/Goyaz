@@ -5,7 +5,26 @@
       "Bash(Select-Object -Property FullName, PSIsContainer)",
       "Bash(Sort-Object FullName)",
       "Bash(ConvertTo-Csv -NoTypeInformation)",
-      "Bash(Out-String)"
+      "Bash(Out-String)",
+      "Bash(npm run lint*)",
+      "Bash(npm run build*)",
+      "Bash(npx tsc --noEmit*)",
+      "Bash(npx eslint*)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{const j=JSON.parse(d);const f=(j.tool_input&&j.tool_input.file_path)||(j.tool_response&&j.tool_response.filePath)||'';if(/\\.(ts|tsx)$/.test(f)){const{execSync}=require('child_process');try{execSync('npx eslint \\\"'+f+'\\\"',{stdio:'inherit',cwd:'C:/My-pro/goyaz'})}catch(e){process.exit(1)}}})\"",
+            "timeout": 30,
+            "statusMessage": "Linting changed file..."
+          }
+        ]
+      }
     ]
   }
 }

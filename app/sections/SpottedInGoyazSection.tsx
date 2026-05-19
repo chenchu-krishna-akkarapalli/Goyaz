@@ -12,13 +12,13 @@ export function SpottedInGoyazSection() {
         className="flex justify-between items-start w-full overflow-hidden px-[16px] lg:px-[80px]"
       />
 
-      {/* Mobile: 4 static images with proportional arch overlay */}
+      {/* Mobile: marquee scroll — original image size, all images */}
       <div className="relative lg:hidden w-full overflow-hidden" style={{ height: "104px" }}>
-        <div className="flex gap-[10px] items-center h-full w-full">
-          {SPOTTED_IN_GOYAZ_IMAGES.slice(0, 4).map((img, index) => (
+        <MarqueeTrack speed={30} gap={10} className="absolute left-0 top-0 h-full w-full">
+          {SPOTTED_IN_GOYAZ_IMAGES.map((img, index) => (
             <div
               key={index}
-              className={`relative flex-1 h-full overflow-hidden ${ANIMATION_CLASSES.hoverZoomBase}`}
+              className={`relative h-full w-[80px] flex-shrink-0 ${ANIMATION_CLASSES.hoverZoomBase}`}
             >
               <img
                 alt=""
@@ -29,25 +29,17 @@ export function SpottedInGoyazSection() {
               />
             </div>
           ))}
-        </div>
+        </MarqueeTrack>
 
-        {/* Top arch — ellipse centred at y=0 so only the bottom-half arc is visible */}
-        <div
-          className="absolute left-0 w-full pointer-events-none z-10"
-          style={{ top: "-20px", height: "40px" }}
-        >
+        {/* Top arch */}
+        <div className="absolute left-0 w-full pointer-events-none z-10" style={{ top: "-20px", height: "40px" }}>
           <img alt="" className="block h-full w-full" src={ellipse5} loading="lazy" decoding="async" />
         </div>
-
-        {/* Bottom arch — ellipse centred at y=104 */}
-        <div
-          className="absolute left-0 w-full pointer-events-none z-10"
-          style={{ bottom: "-20px", height: "40px" }}
-        >
+        {/* Bottom arch */}
+        <div className="absolute left-0 w-full pointer-events-none z-10" style={{ bottom: "-20px", height: "40px" }}>
           <img alt="" className="block h-full w-full" src={ellipse5} loading="lazy" decoding="async" />
         </div>
-
-        {/* Left & right white gradient edge fades */}
+        {/* Left & right white fade */}
         <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-[40px] bg-gradient-to-r from-white to-transparent" />
         <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-[40px] bg-gradient-to-l from-white to-transparent" />
       </div>

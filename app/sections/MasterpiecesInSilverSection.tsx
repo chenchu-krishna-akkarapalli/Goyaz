@@ -36,9 +36,9 @@ export function MasterpiecesInSilverSection() {
           <img alt="Previous" className="w-[20px] h-[20px] lg:w-[25px] lg:h-[25px]" src={iconLeft}  loading="lazy" decoding="async" />
         </div>
 
-        <div className="flex-1 min-w-0 relative flex justify-center overflow-hidden h-[320px] sm:h-[440px] lg:h-[600px]">
+        <div className="flex-1 min-w-0 relative flex justify-center overflow-hidden h-[340px] sm:h-[500px] lg:h-[560px]">
           <div className="flex flex-col gap-[10px] items-center w-full max-w-[320px] sm:max-w-[380px] lg:max-w-[426px] absolute top-1/2 -translate-y-1/2">
-            <div className={`relative w-full h-[260px] sm:h-[340px] lg:h-[426px] overflow-hidden rounded-[30px] ${ANIMATION_CLASSES.hoverZoomBase}`}>
+            <div className={`relative w-full aspect-square overflow-hidden rounded-[30px] ${ANIMATION_CLASSES.hoverZoomBase}`}>
               <img
                 key={currentProduct.id}
                 alt={currentProduct.title}

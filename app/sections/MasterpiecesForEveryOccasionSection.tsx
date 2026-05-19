@@ -115,16 +115,16 @@ export function MasterpiecesForEveryOccasionSection() {
       <SectionHeading
         left={SECTION_HEADINGS.masterpiecesForEveryOccasion.left}
         delay={200}
-        className="flex flex-col sm:flex-row sm:justify-between sm:items-start w-full z-10 overflow-hidden gap-3 sm:gap-0 px-4"
+        className="flex flex-col gap-4 sm:flex-row sm:justify-between sm:items-start w-full z-10 overflow-hidden px-4"
         rightSlot={
-          <div className="flex gap-[20px] lg:gap-[40px] items-start overflow-x-auto [scrollbar-width:none] pb-1">
+          <div className="flex gap-[20px] lg:gap-[40px] items-start overflow-x-auto [scrollbar-width:none] pb-1 w-full sm:w-auto">
             {MASTERPIECE_CATEGORIES.map((category) => (
               <div
                 key={category}
-                className="flex flex-col gap-[5px] items-center w-[54px] flex-shrink-0 cursor-pointer"
+                className="flex flex-col gap-[5px] items-center w-[40px] sm:w-[48px] lg:w-[54px] flex-shrink-0 cursor-pointer"
                 onClick={() => setSelectedCategory(category)}
               >
-                <span className={`font-sans text-[16px] text-black uppercase leading-[81.7%] w-full ${selectedCategory === category ? "font-bold" : "font-medium"}`}>
+                <span className={`font-sans text-[11px] sm:text-[13px] lg:text-[16px] text-black uppercase leading-[81.7%] w-full ${selectedCategory === category ? "font-bold" : "font-medium"}`}>
                   {category}
                 </span>
                 <div className="relative h-px w-full">

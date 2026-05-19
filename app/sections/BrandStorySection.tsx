@@ -25,45 +25,23 @@ export function BrandStorySection() {
   const group8 = BRAND_STORY_GROUP8;
 
   return (
-    <section className="flex flex-col gap-[24px] lg:gap-[40px] items-start w-full" data-mfe="section">
+    <section className="flex flex-col gap-[10px] lg:gap-[40px] items-start w-full" data-mfe="section">
 
       <SectionHeading {...SECTION_HEADINGS.brandStory} />
 
       {/* ── BLOCK 1 ─────────────────────────────────────── */}
-      <div className="w-full flex flex-col lg:relative gap-[-40px] lg:h-[560px]">
+      <div className="w-full flex flex-col">
 
         {/* Mobile: collage LEFT · text RIGHT */}
         <div className="lg:hidden flex items-start gap-[16px] w-full">
 
           {/* Overlapping image collage */}
-          <div
-            className="flex-shrink-0"
-            style={{
-              position: "relative",
-              display: "inline-grid",
-              gridTemplateColumns: "max-content",
-              gridTemplateRows: "max-content",
-            }}
-          >
-            {/* Image 1 — frame81 with directional crop */}
-            <div style={{ gridColumn: 1, gridRow: 1, width: 101, height: 101, position: "relative" }}>
-              <div className="absolute inset-0 overflow-hidden rounded-[15px]">
-                <img
-                  alt=""
-                  className="absolute h-full max-w-none"
-                  src={frame81}
-                  style={{ left: "-35.99%", top: "0.15%", width: "149.98%" }}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
+          <div className="flex-shrink-0 relative" style={{ width: 152, height: 152 }}>
+            <div className="absolute top-0 left-0 w-[100px] h-[100px] rounded-[15px] overflow-hidden">
+              <img alt="" className="absolute inset-0 object-cover w-full h-full" src={frame81} loading="lazy" decoding="async" />
             </div>
-            {/* Image 2 — frame82, offset to bottom-right */}
-            <div
-              className="border-2 border-white rounded-[15px] overflow-hidden"
-              style={{ gridColumn: 1, gridRow: 1, marginLeft: 50.67, marginTop: 50.67, width: 101, height: 101, position: "relative" }}
-            >
-              <img alt="" className="absolute inset-0 object-cover w-full h-full rounded-[15px]" src={frame82} loading="lazy" decoding="async" />
+            <div className="absolute bottom-0 right-0 w-[100px] h-[100px] rounded-[15px] overflow-hidden border-2 border-white">
+              <img alt="" className="absolute inset-0 object-cover w-full h-full" src={frame82} loading="lazy" decoding="async" />
             </div>
           </div>
 
@@ -83,45 +61,42 @@ export function BrandStorySection() {
         </div>
 
         {/* Mobile: decorative SVG after Block 1 */}
-        <div className="lg:hidden self-start mt-[-10px]" style={{ height: 75, width: 269 }}>
+        <div className="lg:hidden self-start mt-[-30px]" style={{ height: 75, width: 269 }}>
           <img alt="" className="w-full h-full" src={group18} loading="lazy" decoding="async" />
         </div>
 
-        {/* Desktop: image collage (unchanged) */}
-        <div className="hidden lg:block absolute left-0 top-0 h-[560px] w-[955px]">
-          <div className="absolute left-[40px] top-0" style={{ position: "relative", display: "inline-grid", gridTemplateColumns: "max-content", gridTemplateRows: "max-content" }}>
-            <div className="rounded-[30px] overflow-hidden" style={{ gridColumn: 1, gridRow: 1, width: 320, height: 320, position: "relative" }}>
-              <div className="absolute inset-0 overflow-hidden rounded-[30px]">
-                <img alt="" className="absolute h-full max-w-none" src={frame81} style={{ left: "-35.99%", top: "0.15%", width: "149.98%" }} loading="lazy" decoding="async" />
-              </div>
+        {/* Desktop: images LEFT · text RIGHT */}
+        <div className="hidden lg:block relative" style={{ height: 560 }}>
+          {/* Image collage — top-left at x=40 */}
+          <div className="absolute top-0 left-[40px]" style={{ width: 480, height: 480 }}>
+            <div className="absolute top-0 left-0 w-[320px] h-[320px] rounded-[30px] overflow-hidden">
+              <img alt="" className="absolute inset-0 object-cover w-full h-full" src={frame81} loading="lazy" decoding="async" />
             </div>
-            <div className="flex items-center justify-center" style={{ gridColumn: 1, gridRow: 1, marginLeft: 160, marginTop: 160, width: 320, height: 320, position: "relative", transform: "scaleY(-1) rotate(180deg)" }}>
-              <div className="border-[5px] border-solid border-white rounded-[30px] overflow-hidden" style={{ width: 320, height: 320, position: "relative" }}>
-                <img alt="" className="absolute inset-0 object-cover w-full h-full rounded-[30px]" src={frame82} loading="lazy" decoding="async" />
-              </div>
+            <div className="absolute bottom-0 right-0 w-[320px] h-[320px] rounded-[30px] overflow-hidden border-[5px] border-white">
+              <img alt="" className="absolute inset-0 object-cover w-full h-full" src={frame82} loading="lazy" decoding="async" />
             </div>
           </div>
-          <div className="absolute left-0 top-[288px] h-[256px] w-[915px]">
-            <img alt="" className="absolute inset-0 w-full h-full" src={group13} loading="lazy" decoding="async" />
+          {/* group13 decorative SVG */}
+          <div className="absolute left-0" style={{ top: 288, width: 915, height: 256 }}>
+            <img alt="" className="w-full h-full" src={group13} loading="lazy" decoding="async" />
           </div>
-        </div>
-
-        {/* Desktop: text (unchanged) */}
-        <div className="hidden lg:flex w-full flex-col items-center lg:absolute lg:right-0 lg:top-[48px] lg:w-[560px]">
-          <ScrollRevealWrapper delay={200}>
-            <div className="font-sans flex flex-col gap-[20px] items-center px-[10px] py-[40px] text-black text-center uppercase w-full">
-              <p className="text-[20px] font-medium w-full">Loved by Brides Across India</p>
-              <div className="text-[14px] w-full">
-                <p className="mb-1">From intimate pre-wedding rituals to the grandeur of the mandap, Goyaz has been the trusted choice for countless brides. We believe that your bridal jewelry should be as unforgettable as the day itself. See how women are styling our intricate Nakshi and brilliant Polki silver masterpieces to complete their dream trousseau&mdash;achieving the rich, regal aesthetic of traditional gold, crafted purely in premium 92.5 silver. Become part of our legacy and let our heirlooms witness your most cherished milestones.</p>
-                <p>Our jewelry isn&apos;t simply manufactured, it is sculpted. Each piece is brought to life by master karigars (artisans) who have spent generations perfecting the ancient arts of Nakshi, Kundan, and Victorian jewelry. From the deep, dimensional carving of temple motifs to the precision setting of premium moissanites and Russian emeralds, every detail is meticulously finished with 24k gold micron plating. The result is a flawless, royal gleam that rivals pure gold.</p>
+          {/* Text column — right side */}
+          <div className="absolute right-0 top-[48px] w-[560px] flex flex-col items-center">
+            <ScrollRevealWrapper delay={200}>
+              <div className="font-sans flex flex-col gap-[20px] items-center px-[10px] py-[40px] text-black text-center uppercase w-[560px]">
+                <p className="text-[20px] font-medium w-full">Loved by Brides Across India</p>
+                <div className="text-[14px] w-full">
+                  <p className="mb-1">From intimate pre-wedding rituals to the grandeur of the mandap, Goyaz has been the trusted choice for countless brides. We believe that your bridal jewelry should be as unforgettable as the day itself. See how women are styling our intricate Nakshi and brilliant Polki silver masterpieces to complete their dream trousseau&mdash;achieving the rich, regal aesthetic of traditional gold, crafted purely in premium 92.5 silver. Become part of our legacy and let our heirlooms witness your most cherished milestones.</p>
+                  <p>Our jewelry isn&apos;t simply manufactured, it is sculpted. Each piece is brought to life by master karigars (artisans) who have spent generations perfecting the ancient arts of Nakshi, Kundan, and Victorian jewelry. From the deep, dimensional carving of temple motifs to the precision setting of premium moissanites and Russian emeralds, every detail is meticulously finished with 24k gold micron plating. The result is a flawless, royal gleam that rivals pure gold.</p>
+                </div>
               </div>
-            </div>
-          </ScrollRevealWrapper>
-          <ScrollRevealWrapper delay={400}>
-            <div className="bg-white border border-black flex items-center px-[40px] py-[18px] cursor-pointer transition-all duration-300 hover:bg-black hover:text-white group">
-              <span className="font-sans text-[24px] text-black group-hover:text-white whitespace-nowrap">Discover More</span>
-            </div>
-          </ScrollRevealWrapper>
+            </ScrollRevealWrapper>
+            <ScrollRevealWrapper delay={400}>
+              <div className="bg-white border border-black flex items-center px-[40px] py-[18px] cursor-pointer transition-all duration-300 hover:bg-black hover:text-white group">
+                <span className="font-sans text-[24px] text-black group-hover:text-white whitespace-nowrap">Discover More</span>
+              </div>
+            </ScrollRevealWrapper>
+          </div>
         </div>
       </div>
 
@@ -146,39 +121,27 @@ export function BrandStorySection() {
           </div>
 
           {/* Overlapping image collage */}
-          <div
-            className="flex-shrink-0"
-            style={{
-              position: "relative",
-              display: "inline-grid",
-              gridTemplateColumns: "max-content",
-              gridTemplateRows: "max-content",
-            }}
-          >
-            {/* Image 1 — frame83 */}
-            <div className="rounded-[15px] overflow-hidden" style={{ gridColumn: 1, gridRow: 1, width: 101, height: 101, position: "relative" }}>
-              <img alt="" className="absolute inset-0 object-cover w-full h-full rounded-[15px]" src={frame83} loading="lazy" decoding="async" />
+          <div className="flex-shrink-0 relative" style={{ width: 152, height: 152 }}>
+            <div className="absolute top-0 left-0 w-[100px] h-[100px] rounded-[15px] overflow-hidden">
+              <img alt="" className="absolute inset-0 object-cover w-full h-full" src={frame83} loading="lazy" decoding="async" />
             </div>
-            {/* Image 2 — frame49, offset to bottom-right */}
-            <div
-              className="border-2 border-white rounded-[15px] overflow-hidden"
-              style={{ gridColumn: 1, gridRow: 1, marginLeft: 50.67, marginTop: 50.67, width: 101, height: 101, position: "relative" }}
-            >
-              <img alt="" className="absolute inset-0 object-cover w-full h-full rounded-[15px]" src={frame49} loading="lazy" decoding="async" />
+            <div className="absolute bottom-0 right-0 w-[100px] h-[100px] rounded-[15px] overflow-hidden border-2 border-white">
+              <img alt="" className="absolute inset-0 object-cover w-full h-full" src={frame49} loading="lazy" decoding="async" />
             </div>
           </div>
         </div>
 
         {/* Mobile: decorative SVG after Block 2 */}
-        <div className="lg:hidden self-end mt-3" style={{ height: 72, width: 266 }}>
+        <div className="lg:hidden self-end mt-[-28px]" style={{ height: 72, width: 266 }}>
           <img alt="" className="w-full h-full" src={group10} loading="lazy" decoding="async" />
         </div>
 
-        {/* Desktop: text + collage (unchanged) */}
-        <div className="hidden lg:inline-grid relative" style={{ gridTemplateColumns: "max-content", gridTemplateRows: "max-content" }}>
-          <div style={{ gridColumn: 1, gridRow: 1, position: "relative" }} className="flex flex-col items-center w-[560px] mt-14">
+        {/* Desktop: text LEFT · images RIGHT */}
+        <div className="hidden lg:block relative" style={{ height: 560 }}>
+          {/* Text column — left side */}
+          <div className="absolute left-0 top-[56px] w-[560px] flex flex-col items-center">
             <ScrollRevealWrapper delay={200}>
-              <div className="font-sans flex flex-col gap-[20px] items-center px-[10px] py-[40px] text-black text-center uppercase w-full">
+              <div className="font-sans flex flex-col gap-[20px] items-center px-[10px] py-[40px] text-black text-center uppercase w-[560px]">
                 <p className="text-[20px] font-medium w-full">Crafted by Master Karigars</p>
                 <div className="text-[14px] w-full">
                   <p className="mb-1">Every Goyaz piece begins as a hand-drawn idea and is shaped through time-honored craftsmanship. Our karigars preserve heritage techniques across Nakshi, Kundan, and temple-inspired artistry, creating jewelry that feels traditional yet unmistakably modern for today&apos;s celebrations.</p>
@@ -192,21 +155,18 @@ export function BrandStorySection() {
               </div>
             </ScrollRevealWrapper>
           </div>
-
-          <div className="hidden lg:block" style={{ gridColumn: 1, gridRow: 1, marginLeft: 394, position: "relative", display: "inline-grid", gridTemplateColumns: "max-content", gridTemplateRows: "max-content" }}>
-            <div style={{ gridColumn: 1, gridRow: 1, marginLeft: 446, position: "relative", display: "inline-grid", gridTemplateColumns: "max-content", gridTemplateRows: "max-content" }}>
-              <div style={{ position: "relative", display: "inline-grid", gridTemplateColumns: "max-content", gridTemplateRows: "max-content" }}>
-                <div className="rounded-[30px] overflow-hidden" style={{ gridColumn: 1, gridRow: 1, width: 320, height: 320, position: "relative" }}>
-                  <img alt="" className="absolute inset-0 object-cover w-full h-full rounded-[30px]" src={frame83} loading="lazy" decoding="async" />
-                </div>
-                <div className="border-[5px] border-solid border-white rounded-[30px] overflow-hidden" style={{ gridColumn: 1, gridRow: 1, marginLeft: 160, marginTop: 160, width: 320, height: 320, position: "relative" }}>
-                  <img alt="" className="absolute inset-0 object-cover w-full h-full rounded-[30px]" src={frame49} loading="lazy" decoding="async" />
-                </div>
-              </div>
+          {/* Image collage — right side at x=840 */}
+          <div className="absolute top-0 right-[40px]" style={{ width: 480, height: 480 }}>
+            <div className="absolute top-0 left-0 w-[320px] h-[320px] rounded-[30px] overflow-hidden">
+              <img alt="" className="absolute inset-0 object-cover w-full h-full" src={frame83} loading="lazy" decoding="async" />
             </div>
-            <div style={{ gridColumn: 1, gridRow: 1, marginTop: 298, position: "relative", width: 966, height: 262 }}>
-              <img alt="" className="absolute inset-0 w-full h-full" src={group10} loading="lazy" decoding="async" />
+            <div className="absolute bottom-0 right-0 w-[320px] h-[320px] rounded-[30px] overflow-hidden border-[5px] border-white">
+              <img alt="" className="absolute inset-0 object-cover w-full h-full" src={frame49} loading="lazy" decoding="async" />
             </div>
+          </div>
+          {/* group10 decorative SVG */}
+          <div className="absolute right-0" style={{ top: 298, width: 966, height: 262 }}>
+            <img alt="" className="w-full h-full" src={group10} loading="lazy" decoding="async" />
           </div>
         </div>
       </div>

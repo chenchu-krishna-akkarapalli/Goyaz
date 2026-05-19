@@ -28,12 +28,154 @@ type DragState = {
   thumbWidth: number;
 };
 
-function InnerCircleCardPanel({ startIndex = 0 }: { startIndex?: number }) {
+// ─── Mobile-only: story image with bottom text overlay ───────────────────────
+
+function MobileStoryPanel({
+  image,
+  heading,
+  subheading,
+}: {
+  image: string;
+  heading: string;
+  subheading: string;
+}) {
+  return (
+    <ScrollRevealWrapper className="relative w-full h-[340px] sm:h-[420px] overflow-hidden">
+      <img
+        alt=""
+        src={image}
+        className="absolute inset-0 w-full h-full object-cover"
+        loading="lazy"
+        decoding="async"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 px-6 pb-6 pt-16 flex flex-col gap-2">
+        <p className="font-display text-[22px] sm:text-[26px] leading-tight text-white">
+          {heading}
+        </p>
+        <p className="font-sans text-[13px] text-white/75 leading-relaxed">
+          {subheading}
+        </p>
+      </div>
+    </ScrollRevealWrapper>
+  );
+}
+
+// ─── Mobile-only: horizontal swipe carousel ──────────────────────────────────
+
+function MobileCardCarousel({ startIndex = 0 }: { startIndex?: number }) {
   const viewportRef = useRef<HTMLDivElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
   const dragStateRef = useRef<DragState | null>(null);
   const [thumbLeft, setThumbLeft] = useState(4.5);
 
+  const cards = useMemo(
+    () => [...INNER_CIRCLE_CARDS.slice(startIndex), ...INNER_CIRCLE_CARDS.slice(0, startIndex)],
+    [startIndex]
+  );
+
+  const syncThumbToScroll = () => {
+    const viewport = viewportRef.current;
+    const track = trackRef.current;
+    if (!viewport || !track) return;
+    const trackW = track.clientWidth;
+    const maxThumbLeft = Math.max(0, trackW - INNER_CIRCLE_SLIDER.thumbWidth - 9);
+    const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+    if (maxScroll === 0) { setThumbLeft(4.5); return; }
+    setThumbLeft(4.5 + maxThumbLeft * (viewport.scrollLeft / maxScroll));
+  };
+
+  const syncScrollToPointer = (clientX: number) => {
+    const viewport = viewportRef.current;
+    const dragState = dragStateRef.current;
+    if (!viewport || !dragState) return;
+    const maxThumbLeft = Math.max(0, dragState.trackWidth - dragState.thumbWidth - 9);
+    if (maxThumbLeft === 0) return;
+    const localX = clientX - dragState.trackLeft;
+    const boundedX = Math.max(4.5, Math.min(4.5 + maxThumbLeft, localX - dragState.thumbWidth / 2));
+    setThumbLeft(boundedX);
+    const ratio = (boundedX - 4.5) / maxThumbLeft;
+    const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
+    viewport.scrollTo({ left: maxScroll * ratio, behavior: "auto" });
+  };
+
+  const onTrackPointerDown: React.PointerEventHandler<HTMLDivElement> = (e) => {
+    if (!trackRef.current) return;
+    const rect = trackRef.current.getBoundingClientRect();
+    dragStateRef.current = { pointerId: e.pointerId, trackLeft: rect.left, trackWidth: rect.width, thumbWidth: INNER_CIRCLE_SLIDER.thumbWidth };
+    e.currentTarget.setPointerCapture(e.pointerId);
+    syncScrollToPointer(e.clientX);
+  };
+
+  const onTrackPointerMove: React.PointerEventHandler<HTMLDivElement> = (e) => {
+    if (dragStateRef.current?.pointerId !== e.pointerId) return;
+    syncScrollToPointer(e.clientX);
+  };
+
+  const endTrackDrag: React.PointerEventHandler<HTMLDivElement> = (e) => {
+    if (dragStateRef.current?.pointerId !== e.pointerId) return;
+    dragStateRef.current = null;
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId);
+  };
+
+  return (
+    <div className="flex flex-col gap-4 w-full">
+      <div
+        ref={viewportRef}
+        className="w-full overflow-x-auto scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        onScroll={syncThumbToScroll}
+      >
+        <div className="flex gap-3 w-max">
+          {cards.map((card, index) => (
+            <div
+              key={`${card.title}-${index}`}
+              className={`flex-shrink-0 w-[54vw] sm:w-[38vw] flex flex-col gap-2 snap-start ${ANIMATION_CLASSES.hoverZoomBase}`}
+            >
+              <div className="aspect-square relative w-full rounded-[16px] overflow-hidden border border-[#083c30]/20">
+                <img
+                  alt=""
+                  className={`absolute inset-0 object-cover w-full h-full ${ANIMATION_CLASSES.hoverZoomImg}`}
+                  src={card.imageSrc}
+                  draggable={false}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div className="font-sans flex flex-col gap-0.5 text-black">
+                <p className="text-[11px] uppercase leading-snug tracking-wide">{card.title}</p>
+                <p className="text-[10px] text-[#007311]">from {card.price}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div
+        ref={trackRef}
+        className="relative h-[9px] rounded-[4.5px] overflow-hidden cursor-grab active:cursor-grabbing touch-none w-full"
+        onPointerDown={onTrackPointerDown}
+        onPointerMove={onTrackPointerMove}
+        onPointerUp={endTrackDrag}
+        onPointerCancel={endTrackDrag}
+      >
+        <div aria-hidden="true" className="absolute inset-0 bg-[#f0f0f0] rounded-[4.5px] pointer-events-none" />
+        <div
+          className="absolute top-1/2 -translate-y-1/2 bg-[#002f00] h-[4px] rounded-[2px]"
+          style={{ left: thumbLeft, width: INNER_CIRCLE_SLIDER.thumbWidth }}
+        />
+        <div className="absolute inset-0 pointer-events-none rounded-[4.5px] shadow-[inset_2px_-2px_4px_0px_rgba(0,0,0,0.15)]" />
+      </div>
+    </div>
+  );
+}
+
+// ─── Desktop card panel (unchanged) ─────────────────────────────────────────
+
+function InnerCircleCardPanel({ startIndex = 0 }: { startIndex?: number }) {
+  const viewportRef = useRef<HTMLDivElement | null>(null);
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const dragStateRef = useRef<DragState | null>(null);
+  const [thumbLeft, setThumbLeft] = useState(4.5);
 
   const cards = useMemo(() => {
     return [...INNER_CIRCLE_CARDS.slice(startIndex), ...INNER_CIRCLE_CARDS.slice(0, startIndex)];
@@ -41,33 +183,22 @@ function InnerCircleCardPanel({ startIndex = 0 }: { startIndex?: number }) {
 
   const syncThumbToScroll = () => {
     const viewport = viewportRef.current;
-    if (!viewport) {
-      return;
-    }
+    if (!viewport) return;
 
     const maxScroll = Math.max(0, viewport.scrollWidth - viewport.clientWidth);
     const maxThumbLeft = Math.max(0, INNER_CIRCLE_SLIDER.trackWidth - INNER_CIRCLE_SLIDER.thumbWidth - 9);
 
-    if (maxScroll === 0) {
-      setThumbLeft(4.5);
-      return;
-    }
-
-    const ratio = viewport.scrollLeft / maxScroll;
-    setThumbLeft(4.5 + maxThumbLeft * ratio);
+    if (maxScroll === 0) { setThumbLeft(4.5); return; }
+    setThumbLeft(4.5 + maxThumbLeft * (viewport.scrollLeft / maxScroll));
   };
 
   const syncScrollToPointer = (clientX: number) => {
     const viewport = viewportRef.current;
     const dragState = dragStateRef.current;
-    if (!viewport || !dragState) {
-      return;
-    }
+    if (!viewport || !dragState) return;
 
     const maxThumbLeft = Math.max(0, dragState.trackWidth - dragState.thumbWidth - 9);
-    if (maxThumbLeft === 0) {
-      return;
-    }
+    if (maxThumbLeft === 0) return;
 
     const localX = clientX - dragState.trackLeft;
     const boundedX = Math.max(4.5, Math.min(4.5 + maxThumbLeft, localX - dragState.thumbWidth / 2));
@@ -79,10 +210,7 @@ function InnerCircleCardPanel({ startIndex = 0 }: { startIndex?: number }) {
   };
 
   const onTrackPointerDown: React.PointerEventHandler<HTMLDivElement> = (event) => {
-    if (!trackRef.current) {
-      return;
-    }
-
+    if (!trackRef.current) return;
     const rect = trackRef.current.getBoundingClientRect();
     dragStateRef.current = {
       pointerId: event.pointerId,
@@ -90,22 +218,17 @@ function InnerCircleCardPanel({ startIndex = 0 }: { startIndex?: number }) {
       trackWidth: rect.width,
       thumbWidth: INNER_CIRCLE_SLIDER.thumbWidth,
     };
-
     event.currentTarget.setPointerCapture(event.pointerId);
     syncScrollToPointer(event.clientX);
   };
 
   const onTrackPointerMove: React.PointerEventHandler<HTMLDivElement> = (event) => {
-    if (dragStateRef.current?.pointerId !== event.pointerId) {
-      return;
-    }
+    if (dragStateRef.current?.pointerId !== event.pointerId) return;
     syncScrollToPointer(event.clientX);
   };
 
   const endTrackDrag: React.PointerEventHandler<HTMLDivElement> = (event) => {
-    if (dragStateRef.current?.pointerId !== event.pointerId) {
-      return;
-    }
+    if (dragStateRef.current?.pointerId !== event.pointerId) return;
     dragStateRef.current = null;
     if (event.currentTarget.hasPointerCapture(event.pointerId)) {
       event.currentTarget.releasePointerCapture(event.pointerId);
@@ -125,7 +248,7 @@ function InnerCircleCardPanel({ startIndex = 0 }: { startIndex?: number }) {
               {cards.map((card, index) => (
                 <div key={`${card.title}-${index}`} className={`flex-shrink-0 w-[300px] flex flex-col gap-[10px] items-center snap-start ${ANIMATION_CLASSES.hoverZoomBase}`}>
                   <div className="h-[300px] relative w-full rounded-[30px] overflow-hidden">
-                    <img alt="" className={`absolute inset-0 object-cover w-full h-full rounded-[30px] ${ANIMATION_CLASSES.hoverZoomImg}`} src={card.imageSrc} draggable={false}  loading="lazy" decoding="async" />
+                    <img alt="" className={`absolute inset-0 object-cover w-full h-full rounded-[30px] ${ANIMATION_CLASSES.hoverZoomImg}`} src={card.imageSrc} draggable={false} loading="lazy" decoding="async" />
                   </div>
                   <div className="font-sans flex flex-col gap-[10px] items-center text-black w-[240px]">
                     <p className="text-[16px] text-center uppercase leading-[96.8%]">{card.title}</p>
@@ -142,7 +265,7 @@ function InnerCircleCardPanel({ startIndex = 0 }: { startIndex?: number }) {
           <div
             ref={trackRef}
             className="relative h-[11px] rounded-[5px] overflow-hidden cursor-grab active:cursor-grabbing touch-none"
-            style={{ width: INNER_CIRCLE_SLIDER.trackWidth, maxWidth: '100%' }}
+            style={{ width: INNER_CIRCLE_SLIDER.trackWidth, maxWidth: "100%" }}
             onPointerDown={onTrackPointerDown}
             onPointerMove={onTrackPointerMove}
             onPointerUp={endTrackDrag}
@@ -165,62 +288,99 @@ function InnerCircleCardPanel({ startIndex = 0 }: { startIndex?: number }) {
   );
 }
 
+// ─── Section ─────────────────────────────────────────────────────────────────
+
 export function InnerCircleSection() {
   const frame47 = INNER_CIRCLE_FRAME47;
   const frame130 = INNER_CIRCLE_FRAME130;
   const frame60 = INNER_CIRCLE_FRAME60;
+
   return (
     <>
       <section className="flex flex-col gap-[40px] items-center w-full" data-mfe="section">
         <SectionHeading {...SECTION_HEADINGS.innerCircle} />
-        {/* Row 1 — flipped green image LEFT, card panel RIGHT */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between w-full overflow-hidden">
-          <DirectionalReveal direction="left" className="w-full lg:flex-shrink-0">
-            <div style={{ transform: "scaleY(-1) rotate(180deg)" }}>
-              <div className="h-[240px] sm:h-[360px] lg:h-[640px] w-full lg:w-[960px] overflow-hidden relative">
-                <img alt="" className="absolute inset-0 object-cover w-full h-full" src={frame47}  loading="lazy" decoding="async" />
-                <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center w-[90%] lg:w-[477px]" style={{ top: "calc(50% + 83px)" }}>
-                  <p className="font-display text-[20px] lg:text-[32px] text-[#013809] text-center w-full" style={{ transform: "scaleY(-1) rotate(180deg)" }}>
-                    {INNER_CIRCLE_HEADING_1}
-                  </p>
-                </div>
-                <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center w-[90%] lg:w-[477px]" style={{ top: "calc(50% + 165px)" }}>
-                  <p className="font-sans text-[13px] lg:text-[16px] text-[#007311] text-center w-full" style={{ transform: "scaleY(-1) rotate(180deg)" }}>
-                    {INNER_CIRCLE_SUBHEADING_1}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </DirectionalReveal>
 
-          <DirectionalReveal direction="right" className="w-full">
-            <InnerCircleCardPanel startIndex={0} />
-          </DirectionalReveal>
+        {/* ── Mobile / tablet layout (below lg) ─────────────── */}
+        <div className="flex flex-col gap-6 w-full lg:hidden">
+          <MobileStoryPanel
+            image={frame47}
+            heading={INNER_CIRCLE_HEADING_1}
+            subheading={INNER_CIRCLE_SUBHEADING_1}
+          />
+
+          <MobileCardCarousel startIndex={0} />
+
+          <MobileStoryPanel
+            image={frame130}
+            heading={INNER_CIRCLE_HEADING_2}
+            subheading={INNER_CIRCLE_SUBHEADING_2}
+          />
+
+          <MobileCardCarousel startIndex={2} />
+
+          <div className="flex justify-center pt-2">
+            <Link
+              href="/collections"
+              className="bg-white border border-black flex items-center px-8 py-4 transition-all duration-300 hover:bg-black hover:text-white group"
+            >
+              <span className="font-sans text-[16px] text-black group-hover:text-white whitespace-nowrap">
+                {INNER_CIRCLE_CTA_LABEL}
+              </span>
+            </Link>
+          </div>
         </div>
 
-        {/* Row 2 — card panel LEFT, image RIGHT */}
-        <div className="flex flex-col-reverse lg:flex-row lg:items-center lg:justify-between w-full overflow-hidden">
-          <DirectionalReveal direction="left" className="w-full">
-            <InnerCircleCardPanel startIndex={2} />
-          </DirectionalReveal>
+        {/* ── Desktop layout (lg and above) ─────────────────── */}
+        <div className="hidden lg:flex lg:flex-col lg:gap-[40px] lg:items-center w-full">
+          {/* Row 1 — flipped green image LEFT, card panel RIGHT */}
+          <div className="flex lg:flex-row lg:items-center lg:justify-between w-full overflow-hidden">
+            <DirectionalReveal direction="left" className="w-full lg:w-[960px] lg:flex-shrink-0">
+              <div style={{ transform: "scaleY(-1) rotate(180deg)" }}>
+                <div className="lg:h-[640px] w-full lg:w-[960px] overflow-hidden relative">
+                  <img alt="" className="absolute inset-0 object-cover w-full h-full" src={frame47} loading="lazy" decoding="async" />
+                  <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center w-[90%] lg:w-[477px]" style={{ top: "calc(50% + 83px)" }}>
+                    <p className="font-display text-[32px] text-[#013809] text-center w-full" style={{ transform: "scaleY(-1) rotate(180deg)" }}>
+                      {INNER_CIRCLE_HEADING_1}
+                    </p>
+                  </div>
+                  <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center w-[90%] lg:w-[477px]" style={{ top: "calc(50% + 165px)" }}>
+                    <p className="font-sans text-[16px] text-[#007311] text-center w-full" style={{ transform: "scaleY(-1) rotate(180deg)" }}>
+                      {INNER_CIRCLE_SUBHEADING_1}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </DirectionalReveal>
 
-          <DirectionalReveal direction="right" className="w-full lg:flex-shrink-0">
-            <div className="h-[240px] sm:h-[360px] lg:h-[640px] w-full lg:w-[960px] relative overflow-hidden">
-              <img alt="" className="absolute inset-0 object-cover w-full h-full" src={frame130}  loading="lazy" decoding="async" />
-              <p className="font-display absolute text-[20px] lg:text-[32px] text-center text-white w-[90%] lg:w-[477px] -translate-x-1/2" style={{ left: "calc(50% - 218.5px)", top: "calc(50% - 188px)" }}>
-                {INNER_CIRCLE_HEADING_2}
-              </p>
-              <p className="font-sans absolute text-[13px] lg:text-[16px] text-center text-white w-[90%] lg:w-[477px] -translate-x-1/2" style={{ left: "calc(50% - 218.5px)", top: "calc(50% - 106px)" }}>
-                {INNER_CIRCLE_SUBHEADING_2}
-              </p>
-            </div>
-          </DirectionalReveal>
+            <DirectionalReveal direction="right" className="w-full">
+              <InnerCircleCardPanel startIndex={0} />
+            </DirectionalReveal>
+          </div>
+
+          {/* Row 2 — card panel LEFT, image RIGHT */}
+          <div className="flex lg:flex-row lg:items-center lg:justify-between w-full overflow-hidden">
+            <DirectionalReveal direction="left" className="w-full">
+              <InnerCircleCardPanel startIndex={2} />
+            </DirectionalReveal>
+
+            <DirectionalReveal direction="right" className="w-full lg:w-[960px] lg:flex-shrink-0">
+              <div className="lg:h-[640px] w-full lg:w-[960px] relative overflow-hidden">
+                <img alt="" className="absolute inset-0 object-cover w-full h-full" src={frame130} loading="lazy" decoding="async" />
+                <p className="font-display absolute text-[32px] text-center text-white w-[477px]" style={{ left: "calc(50% - 238.5px)", top: "calc(50% - 188px)" }}>
+                  {INNER_CIRCLE_HEADING_2}
+                </p>
+                <p className="font-sans absolute text-[16px] text-center text-white w-[477px]" style={{ left: "calc(50% - 238.5px)", top: "calc(50% - 106px)" }}>
+                  {INNER_CIRCLE_SUBHEADING_2}
+                </p>
+              </div>
+            </DirectionalReveal>
+          </div>
         </div>
       </section>
 
-      {/* Full-width banner — slides up from below */}
+      {/* Full-width banner — all breakpoints */}
       <ScrollRevealWrapper className="w-full h-[300px] sm:h-[440px] lg:h-[660px] relative overflow-hidden rounded-none" delay={200}>
-        <img alt="" className="absolute inset-0 object-cover w-full h-full pointer-events-none" src={frame60}  loading="lazy" decoding="async" />
+        <img alt="" className="absolute inset-0 object-cover w-full h-full pointer-events-none" src={frame60} loading="lazy" decoding="async" />
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-4">
           <p className="font-display text-[22px] lg:text-[32px] text-center text-white w-full max-w-[477px]">
             {INNER_CIRCLE_HEADING_3}

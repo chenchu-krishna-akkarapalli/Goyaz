@@ -153,6 +153,12 @@ export const ANIMATION_CLASSES = {
   /** Right child card panel content entrance */
   navChildCardsIn:
     'animate-[navChildCardsIn_0.82s_cubic-bezier(0.16,1,0.3,1)_forwards]',
+  /** Mobile child panel slides in from the right edge (1 s spring) */
+  navChildPanelSlideIn:
+    'animate-[navChildPanelSlideInRight_1s_cubic-bezier(0.16,1,0.3,1)_forwards]',
+  /** Mobile child panel slides out to the right edge (0.65 s sharp) */
+  navChildPanelSlideOut:
+    'animate-[navChildPanelSlideOutRight_0.65s_cubic-bezier(0.4,0,0.6,1)_forwards]',
 
   // ── Cart Sidebar ───────────────────────────────────────────
   /** Sidebar slides in from right edge */

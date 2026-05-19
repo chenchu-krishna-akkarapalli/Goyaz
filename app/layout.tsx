@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Outfit } from "next/font/google";
+import { Outfit, Allura } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
@@ -15,6 +15,13 @@ const outfit = Outfit({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-shell",
+});
+
+const allura = Allura({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+  variable: "--font-allura",
 });
 
 export const metadata: Metadata = {
@@ -44,7 +51,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${outfit.variable} h-full antialiased`}
+      className={`${outfit.variable} ${allura.variable} h-full antialiased`}
       /**
        * data-shell marks the outermost MFE host boundary.
        * CSS isolation rules in globals.css anchor to this.

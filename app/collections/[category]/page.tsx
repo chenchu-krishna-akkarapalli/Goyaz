@@ -69,7 +69,7 @@ const CATEGORY_HERO_COPY: Record<
 // ── Brand Panel ────────────────────────────────────────────────
 function BrandPanel() {
   return (
-    <div className="h-[500px] lg:h-[846px] relative rounded-[30px] flex-shrink-0 w-full overflow-hidden flex flex-col items-center justify-end pb-[40px] lg:pb-[60px]">
+    <div className="h-[320px] sm:h-[420px] lg:h-[846px] relative rounded-[16px] lg:rounded-[30px] flex-shrink-0 w-full overflow-hidden flex flex-col items-center justify-end pb-[28px] lg:pb-[60px]">
       <Image
         src="/images/sections/collections/frame260.avif"
         alt=""
@@ -79,16 +79,15 @@ function BrandPanel() {
         sizes="670px"
       />
       <div className="absolute inset-0 bg-[rgba(0,18,0,0.45)]" />
-      <div className="relative z-10 flex flex-col items-center gap-5 px-10">
-        <p className="font-display text-[32px] text-center text-white leading-normal max-w-[477px]">
+      <div className="relative z-10 flex flex-col items-center gap-5 px-6 lg:px-10">
+        <p className="font-display text-[18px] sm:text-[22px] lg:text-[32px] text-center text-white leading-tight max-w-[300px] lg:max-w-[477px]">
           {"India's Largest Premium Silver Destination"}
         </p>
-        <p className="font-sans text-[16px] text-center text-white/85 leading-normal max-w-[477px]">
-          Join the Goyaz Inner Circle. Get early access to new collections and
-          exclusive bridal offers.
+        <p className="font-sans text-[11px] sm:text-[13px] lg:text-[16px] text-center text-white/85 leading-[1.5] max-w-[260px] sm:max-w-[400px] lg:max-w-[477px]">
+          Join the Goyaz Inner Circle. Get early access to new collections and exclusive bridal offers.
         </p>
         <button
-          className="font-sans bg-white text-(--color-dark) border border-(--color-dark) px-[24px] py-[14px] lg:px-[40px] lg:py-[18px] text-[16px] lg:text-[24px] mt-5 hover:bg-(--color-dark) hover:text-white transition-colors"
+          className="font-sans bg-white text-(--color-dark) border border-(--color-dark) px-[20px] py-[10px] lg:px-[40px] lg:py-[18px] text-[12px] lg:text-[24px] mt-3 lg:mt-5 hover:bg-(--color-dark) hover:text-white transition-colors"
           type="button"
         >
           Discover More

@@ -32,8 +32,7 @@ const COLLECTION_IMAGES = [
 ];
 
 const PER_CATEGORY = 16;
-// 12 normals (rows 1, 2, 4, 5) + 4 wides (bento + row 4 + row 5)
-const sizeAt = (i: number): MasterpieceSize => (i < 12 ? "normal" : "wide");
+const sizeAt = (i: number): MasterpieceSize => (i % 2 === 0 ? "normal" : "wide");
 
 const PRODUCT_TITLES: Record<MasterpieceProduct["category"], string[]> = {
   Nakshi: [
