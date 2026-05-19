@@ -22,9 +22,8 @@ const INFO_LINKS = [
 export function Footer() {
   return (
     <footer
-      className="bg-(--color-dark) text-white w-full"
+      className="font-sans bg-(--color-dark) text-white w-full"
       data-mfe="footer"
-      style={{ fontFamily: "'Futura PT', sans-serif" }}
     >
       {/* ── Main footer body ── */}
       <div className="layout-container py-[60px]">

@@ -119,9 +119,80 @@ Row E: [N][W][N]
 | `app/components/NavMenu.tsx` | 7-section slide-out menu with 3-level hierarchy |
 | `app/components/HeroMediaCarousel.tsx` | Hero video/image sequence (840px) |
 | `app/components/ScrollIndicator.tsx` | Animated bounce-down scroll prompt |
+| `app/components/CollectionHeroBanner.tsx` | Full-bleed hero banner for collection pages (see below) |
+| `app/components/PageHeader.tsx` | Sticky page-title bar for non-hero pages (see below) |
+| `app/components/SectionHeading.tsx` | Left/right label pair with slide-in animation |
+| `app/components/Footer.tsx` | Dark-green footer with nav columns, social icons, newsletter |
 | `app/components/cards/MasterpieceNormalCard.tsx` | 325px product card (homepage use) |
 | `app/components/cards/MasterpieceWideCard.tsx` | 670px product card (homepage use) |
 | `app/components/cards/CollectionCard.tsx` | Product card with Add to Cart bar (collection pages) |
+
+---
+
+### CollectionHeroBanner
+
+Full-bleed hero banner placed **above** `PageHeader` on every collection page. The background image and tagline are fixed; headline and description are dynamic props.
+
+**Figma node:** `399:484`
+
+**Heights:** `200px` (mobile) / `260px` (tablet) / `319px` (desktop)
+
+**Props:**
+| Prop | Type | Description |
+|---|---|---|
+| `headline` | `string` | Large display-font heading on the left |
+| `description` | `string` | Short body copy below the headline |
+| `imageAlt` | `string?` | Alt text for background image (default: `"Collection hero"`) |
+
+**Usage pattern:**
+```tsx
+<CollectionHeroBanner
+  headline="The Nakshi Heritage Room"
+  description="Step into the world of hand-engraved Nakshi craftsmanship…"
+  imageAlt="Nakshi collection hero"
+/>
+```
+
+**Implementation notes:**
+- Uses `next/image` with `fill` + `priority` for the background (above-the-fold, no lazy load)
+- Desktop layout: headline + description positioned at `left-0 top-[120px]`; tagline `TRUST | Quality | Premium` at `right-[40px] top-[222px]`
+- Mobile/tablet: centred column layout replaces the absolute positioning
+- Background image: `/images/sections/collections/hero-collection.avif` (fixed, not a prop)
+- Does **not** add `pt-[80px]` — the banner covers the full viewport width from top
+
+---
+
+### PageHeader
+
+Sticky bar that appears **below** `CollectionHeroBanner`. It sticks to `top-0` once the banner scrolls away (the navbar has already hidden on scroll-down by that point).
+
+**Heights:** `~70px` with `py-[25px]` padding
+
+**Props:**
+| Prop | Type | Description |
+|---|---|---|
+| `title` | `string` | Main page title (large text) |
+| `subtitle` | `string?` | Small label above the title (e.g. `"Silver Jeweler"`) |
+| `count` | `number?` | Product count shown as superscript next to title |
+| `rightSlot` | `ReactNode?` | Optional slot on the right (e.g. Filters & Sorting control) |
+
+**Usage pattern:**
+```tsx
+<PageHeader
+  subtitle="Silver Jeweler"
+  title="Nakshi"
+  count={products.length}
+  rightSlot={<FilterControl />}
+/>
+```
+
+**Implementation notes:**
+- `sticky top-0 z-40` — sits beneath the navbar z-index (50) but above content (1)
+- `bg-white border-b border-[#f0f0f0]` — white with subtle bottom divider
+- Left side uses `DirectionalReveal direction="left"` animation
+- Right slot uses `DirectionalReveal direction="right"` animation
+- Text sizes: title `28px → 40px → 48px` (mobile → tablet → desktop); subtitle/count `14px → 16px`
+- Uses `layout-container` + `layout-inner` for gutter consistency
 
 ### Homepage Sections
 | File | Key Design |

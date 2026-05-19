@@ -21,18 +21,15 @@ export default function Home() {
         <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-10 flex flex-col items-center gap-[12px] lg:gap-[20px] w-full px-4">
           <ScrollRevealWrapper className="flex flex-col items-center">
             <p
-              className="w-[90vw] sm:w-[480px] lg:w-[574px] text-[22px] sm:text-[28px] lg:text-[32px] text-center text-transparent bg-clip-text"
-              style={{
-                fontFamily: "'Nostalgic Whispers', cursive",
-                backgroundImage: "linear-gradient(59deg, rgb(255,255,255) 73.973%, rgb(32,226,200) 97.525%)",
-              }}
+              className="font-script w-[90vw] sm:w-[480px] lg:w-[574px] text-[22px] sm:text-[28px] lg:text-[32px] text-center text-transparent bg-clip-text"
+              style={{ backgroundImage: "linear-gradient(59deg, rgb(255,255,255) 73.973%, rgb(32,226,200) 97.525%)" }}
             >
               Timeless Royalty, Crafted in Silver.
             </p>
           </ScrollRevealWrapper>
           <ScrollRevealWrapper delay={200}>
             <div className="border border-white flex gap-[10px] items-center px-[24px] py-[14px] lg:px-[40px] lg:py-[18px] cursor-pointer transition-all duration-300 hover:bg-white hover:text-black group">
-              <span style={{ fontFamily: "'Futura PT', sans-serif" }} className="text-[16px] lg:text-[24px] text-white group-hover:text-black whitespace-nowrap">
+              <span className="font-sans text-[16px] lg:text-[24px] text-white group-hover:text-black whitespace-nowrap">
                 Discover More
               </span>
             </div>

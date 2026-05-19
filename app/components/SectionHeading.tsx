@@ -23,10 +23,7 @@ export function SectionHeading({
   return (
     <div className={className}>
       <LeftReveal delay={delay} className={leftRevealClassName}>
-        <p
-          style={{ fontFamily: "'Futura PT', sans-serif" }}
-          className="text-[14px] lg:text-[20px] text-black uppercase whitespace-nowrap font-medium"
-        >
+        <p className="font-sans text-[14px] lg:text-[20px] text-black uppercase whitespace-nowrap font-medium">
           {left}
         </p>
       </LeftReveal>
@@ -34,10 +31,7 @@ export function SectionHeading({
       {(right || rightSlot) && (
         <RightReveal delay={delay} className={rightRevealClassName}>
           {rightSlot ?? (
-            <p
-              style={{ fontFamily: "'Futura PT', sans-serif" }}
-              className="text-[11px] lg:text-[16px] text-black uppercase whitespace-nowrap opacity-60"
-            >
+            <p className="font-sans text-[11px] lg:text-[16px] text-black uppercase whitespace-nowrap opacity-60">
               {right}
             </p>
           )}

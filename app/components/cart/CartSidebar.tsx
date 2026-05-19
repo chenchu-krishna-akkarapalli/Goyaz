@@ -74,18 +74,8 @@ export function CartSidebar() {
         <div className="flex items-center justify-between px-[30px] py-[24px] border-b border-[#e8e8e8]">
           <div className="flex items-center gap-[12px] text-(--color-dark)">
             <CartIconLarge />
-            <p
-              className="text-[24px] leading-none"
-              style={{ fontFamily: "'House of Montague', Georgia, serif" }}
-            >
-              Your Cart
-            </p>
-            <span
-              className="text-[14px] opacity-60"
-              style={{ fontFamily: "'Futura PT', sans-serif" }}
-            >
-              ({totals.itemCount})
-            </span>
+            <p className="font-display text-[24px] leading-none">Your Cart</p>
+            <span className="font-sans text-[14px] opacity-60">({totals.itemCount})</span>
           </div>
           <button
             type="button"
@@ -98,10 +88,7 @@ export function CartSidebar() {
         </div>
 
         {/* ── Body ── */}
-        <div
-          className="flex-1 overflow-y-auto nav-menu-scrollbar px-[24px] py-[20px]"
-          style={{ fontFamily: "'Futura PT', sans-serif" }}
-        >
+        <div className="font-sans flex-1 overflow-y-auto nav-menu-scrollbar px-[24px] py-[20px]">
           {items.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center text-center gap-[12px] text-(--color-dark)/70 py-[60px]">
               <CartIconLarge />
@@ -173,10 +160,7 @@ export function CartSidebar() {
         </div>
 
         {/* ── Footer ── */}
-        <div
-          className="border-t border-[#e8e8e8] px-[30px] py-[22px] flex flex-col gap-[14px] bg-white"
-          style={{ fontFamily: "'Futura PT', sans-serif" }}
-        >
+        <div className="font-sans border-t border-[#e8e8e8] px-[30px] py-[22px] flex flex-col gap-[14px] bg-white">
           <div className="flex flex-col gap-[6px] text-[14px] text-(--color-dark)">
             <div className="flex justify-between">
               <span className="opacity-70">Subtotal</span>
@@ -192,10 +176,7 @@ export function CartSidebar() {
             </div>
             <div className="flex justify-between pt-[8px] border-t border-[#e8e8e8] mt-[4px]">
               <span className="text-[16px]">Total</span>
-              <span
-                className="text-[18px] font-medium tracking-wide"
-                style={{ fontFamily: "'Futura PT', 'Futura PT Book', sans-serif" }}
-              >
+              <span className="font-sans text-[18px] font-medium tracking-wide">
                 {formatINR(totals.total)}
               </span>
             </div>

@@ -60,8 +60,7 @@ export function Navbar() {
         >
           <img alt="" className={`w-[22px] h-[22px] lg:w-[25px] lg:h-[25px] transition-all duration-300 ${isScrolled ? '' : 'brightness-0 invert'}`} src={NAVBAR_ICON_MENU}  loading="lazy" decoding="async" />
           <span
-            className={`hidden sm:block text-[20px] leading-[96.8%] transition-colors duration-300 ${isScrolled ? 'text-black' : 'text-white'}`}
-            style={{ fontFamily: "'Futura PT', 'Futura_PT:Book', sans-serif" }}
+            className={`font-sans hidden sm:block text-[20px] leading-[96.8%] transition-colors duration-300 ${isScrolled ? 'text-black' : 'text-white'}`}
           >
             MENU
           </span>
@@ -78,8 +77,7 @@ export function Navbar() {
             <img alt="" className={`w-[22px] h-[22px] lg:w-[25px] lg:h-[25px] transition-all duration-300 ${isScrolled ? '' : 'brightness-0 invert'}`} src={NAVBAR_ICON_CART}  loading="lazy" decoding="async" />
             {totals.itemCount > 0 && (
               <span
-                className={`absolute -top-[6px] -right-[8px] min-w-[18px] h-[18px] px-[5px] flex items-center justify-center rounded-full text-[10px] font-medium leading-none ${isScrolled ? 'bg-(--color-dark) text-white' : 'bg-white text-(--color-dark)'}`}
-                style={{ fontFamily: "'Futura PT', sans-serif" }}
+                className={`font-sans absolute -top-[6px] -right-[8px] min-w-[18px] h-[18px] px-[5px] flex items-center justify-center rounded-full text-[10px] font-medium leading-none ${isScrolled ? 'bg-(--color-dark) text-white' : 'bg-white text-(--color-dark)'}`}
               >
                 {totals.itemCount}
               </span>

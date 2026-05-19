@@ -98,8 +98,26 @@
   --color-foreground: var(--color-fg);
   --color-primary:    var(--color-primary);
   --color-accent:     var(--color-accent);
+
+  /* Font-family utilities */
   --font-sans:        var(--font-body);
+  --font-body:        var(--font-body);
+  --font-body-med:    var(--font-body-med);
   --font-display:     var(--font-display);
+  --font-script:      var(--font-script);
+  --font-stamp:       var(--font-stamp);
+  --font-ui:          var(--font-ui);
+
+  /* Brand text-size utilities (prefixed to avoid overriding Tailwind defaults) */
+  --text-brand-xs:   var(--text-xs);
+  --text-brand-sm:   var(--text-sm);
+  --text-brand-base: var(--text-base);
+  --text-brand-lg:   var(--text-lg);
+  --text-brand-xl:   var(--text-xl);
+  --text-brand-2xl:  var(--text-2xl);
+  --text-brand-3xl:  var(--text-3xl);
+  --text-brand-4xl:  var(--text-4xl);
+  --text-brand-hero: var(--text-hero);
 }
 
 /* ─────────────────────────────────────────────
@@ -242,6 +260,16 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--color-fg);
+}
+
+/* Frosted "Add to Cart" bar — shared by all card variants */
+.cart-bar-bg {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.cart-bar-bg:hover {
+  background: #ffffff;
 }
 
 /* Video fill */

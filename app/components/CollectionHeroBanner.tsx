@@ -41,18 +41,12 @@ export function CollectionHeroBanner({
       {/* Mobile/tablet: centred stacked layout */}
       <div className="lg:hidden absolute inset-0 flex flex-col items-center justify-center gap-2 px-6 text-center">
         <ScrollRevealWrapper variant="up" delay={120}>
-          <p
-            className="text-white text-[22px] md:text-[30px] leading-tight"
-            style={{ fontFamily: "'House of Montague', Georgia, serif" }}
-          >
+          <p className="font-display text-white text-[22px] md:text-[30px] leading-tight">
             {headline}
           </p>
         </ScrollRevealWrapper>
         <ScrollRevealWrapper variant="fade" delay={260}>
-          <p
-            className="text-white text-[11px] md:text-[13px] leading-[1.55] max-w-[420px]"
-            style={{ fontFamily: "'Futura PT', sans-serif" }}
-          >
+          <p className="font-sans text-white text-[11px] md:text-[13px] leading-[1.55] max-w-[420px]">
             {description}
           </p>
         </ScrollRevealWrapper>
@@ -63,18 +57,12 @@ export function CollectionHeroBanner({
         <div className="layout-inner h-full relative">
           <div className="absolute left-0 top-[120px] w-[523px] flex flex-col gap-[12px] items-center text-center">
             <ScrollRevealWrapper variant="up" delay={120}>
-              <p
-                className="text-white text-[40px] leading-[1.241] whitespace-nowrap"
-                style={{ fontFamily: "'House of Montague', Georgia, serif" }}
-              >
+              <p className="font-display text-white text-[40px] leading-[1.241] whitespace-nowrap">
                 {headline}
               </p>
             </ScrollRevealWrapper>
             <ScrollRevealWrapper variant="fade" delay={260}>
-              <p
-                className="text-white text-[12px] leading-[1.55] w-[447px]"
-                style={{ fontFamily: "'Futura PT', sans-serif" }}
-              >
+              <p className="font-sans text-white text-[12px] leading-[1.55] w-[447px]">
                 {description}
               </p>
             </ScrollRevealWrapper>
@@ -84,10 +72,7 @@ export function CollectionHeroBanner({
             delay={320}
             className="absolute right-[40px] top-[222px]"
           >
-            <p
-              className="text-white text-[20px] tracking-[2px] text-center w-[278px]"
-              style={{ fontFamily: "'Futura PT', sans-serif" }}
-            >
+            <p className="font-sans text-white text-[20px] tracking-[2px] text-center w-[278px]">
               {HERO_TAGLINE}
             </p>
           </ScrollRevealWrapper>

@@ -46,7 +46,7 @@ export function MasterpiecesInSilverSection() {
                 src={currentProduct.image}
                loading="lazy" decoding="async" />
             </div>
-            <div style={{ fontFamily: "'Futura PT', sans-serif" }} className="flex flex-col gap-[10px] items-center text-black w-full max-w-[240px]">
+            <div className="font-sans flex flex-col gap-[10px] items-center text-black w-full max-w-[240px]">
               <p className="text-[16px] text-center uppercase leading-[96.8%] h-[32px] flex items-center justify-center">{currentProduct.title}</p>
               <div className="flex gap-[5px] items-center text-[14px] whitespace-nowrap">
                 <span>starting from</span>

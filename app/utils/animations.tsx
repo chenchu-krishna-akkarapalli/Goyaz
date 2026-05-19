@@ -37,6 +37,7 @@ export const DURATIONS = {
   slow: 600,
   cinematic: 900,
   epic: 1200,
+  sweep: 2000,
 } as const;
 
 // ─────────────────────────────────────────────────────────────

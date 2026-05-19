@@ -127,7 +127,7 @@ function InnerCircleCardPanel({ startIndex = 0 }: { startIndex?: number }) {
                   <div className="h-[300px] relative w-full rounded-[30px] overflow-hidden">
                     <img alt="" className={`absolute inset-0 object-cover w-full h-full rounded-[30px] ${ANIMATION_CLASSES.hoverZoomImg}`} src={card.imageSrc} draggable={false}  loading="lazy" decoding="async" />
                   </div>
-                  <div style={{ fontFamily: "'Futura PT', sans-serif" }} className="flex flex-col gap-[10px] items-center text-black w-[240px]">
+                  <div className="font-sans flex flex-col gap-[10px] items-center text-black w-[240px]">
                     <p className="text-[16px] text-center uppercase leading-[96.8%]">{card.title}</p>
                     <div className="flex gap-[5px] items-center text-[14px] whitespace-nowrap">
                       <span>starting from</span>
@@ -158,7 +158,7 @@ function InnerCircleCardPanel({ startIndex = 0 }: { startIndex?: number }) {
         </div>
 
         <Link href="/collections" className="bg-white border border-black flex items-center px-[40px] py-[18px] cursor-pointer transition-all duration-300 hover:bg-black hover:text-white group">
-          <span style={{ fontFamily: "'Futura PT', sans-serif" }} className="text-[24px] text-black group-hover:text-white whitespace-nowrap">{INNER_CIRCLE_CTA_LABEL}</span>
+          <span className="font-sans text-[24px] text-black group-hover:text-white whitespace-nowrap">{INNER_CIRCLE_CTA_LABEL}</span>
         </Link>
       </div>
     </div>
@@ -180,12 +180,12 @@ export function InnerCircleSection() {
               <div className="h-[240px] sm:h-[360px] lg:h-[640px] w-full lg:w-[960px] overflow-hidden relative">
                 <img alt="" className="absolute inset-0 object-cover w-full h-full" src={frame47}  loading="lazy" decoding="async" />
                 <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center w-[90%] lg:w-[477px]" style={{ top: "calc(50% + 83px)" }}>
-                  <p style={{ fontFamily: "'House of Montague', serif", transform: "scaleY(-1) rotate(180deg)" }} className="text-[20px] lg:text-[32px] text-[#013809] text-center w-full">
+                  <p className="font-display text-[20px] lg:text-[32px] text-[#013809] text-center w-full" style={{ transform: "scaleY(-1) rotate(180deg)" }}>
                     {INNER_CIRCLE_HEADING_1}
                   </p>
                 </div>
                 <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center w-[90%] lg:w-[477px]" style={{ top: "calc(50% + 165px)" }}>
-                  <p style={{ fontFamily: "'Futura PT', sans-serif", transform: "scaleY(-1) rotate(180deg)" }} className="text-[13px] lg:text-[16px] text-[#007311] text-center w-full">
+                  <p className="font-sans text-[13px] lg:text-[16px] text-[#007311] text-center w-full" style={{ transform: "scaleY(-1) rotate(180deg)" }}>
                     {INNER_CIRCLE_SUBHEADING_1}
                   </p>
                 </div>
@@ -207,10 +207,10 @@ export function InnerCircleSection() {
           <DirectionalReveal direction="right" className="w-full lg:flex-shrink-0">
             <div className="h-[240px] sm:h-[360px] lg:h-[640px] w-full lg:w-[960px] relative overflow-hidden">
               <img alt="" className="absolute inset-0 object-cover w-full h-full" src={frame130}  loading="lazy" decoding="async" />
-              <p style={{ fontFamily: "'House of Montague', serif", left: "calc(50% - 218.5px)", top: "calc(50% - 188px)" }} className="absolute text-[20px] lg:text-[32px] text-center text-white w-[90%] lg:w-[477px] -translate-x-1/2">
+              <p className="font-display absolute text-[20px] lg:text-[32px] text-center text-white w-[90%] lg:w-[477px] -translate-x-1/2" style={{ left: "calc(50% - 218.5px)", top: "calc(50% - 188px)" }}>
                 {INNER_CIRCLE_HEADING_2}
               </p>
-              <p style={{ fontFamily: "'Futura PT', sans-serif", left: "calc(50% - 218.5px)", top: "calc(50% - 106px)" }} className="absolute text-[13px] lg:text-[16px] text-center text-white w-[90%] lg:w-[477px] -translate-x-1/2">
+              <p className="font-sans absolute text-[13px] lg:text-[16px] text-center text-white w-[90%] lg:w-[477px] -translate-x-1/2" style={{ left: "calc(50% - 218.5px)", top: "calc(50% - 106px)" }}>
                 {INNER_CIRCLE_SUBHEADING_2}
               </p>
             </div>
@@ -222,14 +222,14 @@ export function InnerCircleSection() {
       <ScrollRevealWrapper className="w-full h-[300px] sm:h-[440px] lg:h-[660px] relative overflow-hidden rounded-none" delay={200}>
         <img alt="" className="absolute inset-0 object-cover w-full h-full pointer-events-none" src={frame60}  loading="lazy" decoding="async" />
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-4">
-          <p style={{ fontFamily: "'House of Montague', serif" }} className="text-[22px] lg:text-[32px] text-center text-white w-full max-w-[477px]">
+          <p className="font-display text-[22px] lg:text-[32px] text-center text-white w-full max-w-[477px]">
             {INNER_CIRCLE_HEADING_3}
           </p>
-          <p style={{ fontFamily: "'Futura PT', sans-serif" }} className="text-[13px] lg:text-[16px] text-center text-white w-full max-w-[477px]">
+          <p className="font-sans text-[13px] lg:text-[16px] text-center text-white w-full max-w-[477px]">
             {INNER_CIRCLE_SUBHEADING_3}
           </p>
           <Link href="/collections" className="mt-2 bg-white border border-black flex items-center px-[24px] py-[12px] lg:px-[40px] lg:py-[18px] cursor-pointer transition-all duration-300 hover:bg-black hover:text-white group">
-            <span style={{ fontFamily: "'Futura PT', sans-serif" }} className="text-[16px] lg:text-[24px] text-black group-hover:text-white whitespace-nowrap">{INNER_CIRCLE_CTA_LABEL}</span>
+            <span className="font-sans text-[16px] lg:text-[24px] text-black group-hover:text-white whitespace-nowrap">{INNER_CIRCLE_CTA_LABEL}</span>
           </Link>
         </div>
       </ScrollRevealWrapper>
