@@ -193,7 +193,7 @@ export default function ProductPage({
                   className={`absolute inset-0 w-full h-full object-cover ease-[cubic-bezier(0.16,1,0.3,1)] ${
                     isTransitioning
                       ? "opacity-0 scale-[0.98] blur-[2px] duration-200"
-                      : "opacity-100 scale-100 duration-[2500ms] delay-[2500ms] group-hover:scale-[1.37]"
+                      : "opacity-100 scale-100 duration-[700ms] group-hover:scale-[1.37]"
                   } ${
                     galleryImages[activeImageIndex].isMacro ? "scale-[2.4] translate-y-[5%] group-hover:scale-[2.8]" : ""
                   }`}

@@ -59,7 +59,7 @@ export default function CollectionsIndexPage() {
                   <img
                     src={heroImg}
                     alt={cat}
-                    className="absolute inset-0 w-full h-full object-cover transition-all duration-[2500ms] delay-[2500ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.08]"
+                    className="absolute inset-0 w-full h-full object-cover transition-all duration-[700ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.08]"
                     loading="lazy"
                     decoding="async"
                   />
