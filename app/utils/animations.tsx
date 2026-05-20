@@ -87,7 +87,7 @@ export const ANIMATION_CLASSES = {
   hoverZoomBase: 'overflow-hidden group cursor-pointer',
   /** Child image / element that zooms */
   hoverZoomImg:
-    'hover-zoom-transition group-hover:scale-[1.37]',
+    'hover-zoom-transition',
 
   /** Lift on hover — card elevation feel */
   hoverLift:

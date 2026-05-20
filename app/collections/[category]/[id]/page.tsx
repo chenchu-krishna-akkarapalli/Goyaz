@@ -190,12 +190,14 @@ export default function ProductPage({
                 <img
                   src={galleryImages[activeImageIndex].src}
                   alt={product.title}
-                  className={`absolute inset-0 w-full h-full object-cover ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                  className={`absolute inset-0 w-full h-full object-cover ${
                     isTransitioning
-                      ? "opacity-0 scale-[0.98] blur-[2px] duration-200"
-                      : "opacity-100 scale-100 duration-[2500ms] delay-[2500ms] group-hover:scale-[1.37]"
-                  } ${
-                    galleryImages[activeImageIndex].isMacro ? "scale-[2.4] translate-y-[5%] group-hover:scale-[2.8]" : ""
+                      ? "transition-[transform,opacity,filter] duration-[200ms] ease-out opacity-0 blur-[2px] [transform:scale(0.98)]"
+                      : `transition-[transform,opacity,filter] duration-[2500ms] ease-[cubic-bezier(0.16,1,0.3,1)] opacity-100 blur-none ${
+                          galleryImages[activeImageIndex].isMacro
+                            ? "[transform:scale(2.4)_translateY(5%)] group-hover:[transform:scale(2.8)_translateY(5%)]"
+                            : "[transform:scale(1)] group-hover:[transform:scale(1.37)]"
+                        }`
                   }`}
                   style={{
                     transformOrigin: galleryImages[activeImageIndex].isMacro ? "35% 45%" : "center",
