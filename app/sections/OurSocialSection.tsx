@@ -15,7 +15,7 @@ export function OurSocialSection() {
         as="div"
       >
         {items.map(({ src, alt }) => (
-          <div key={alt} className="relative w-[18px] h-[18px] sm:w-[24px] sm:h-[24px] lg:w-[30px] lg:h-[30px] cursor-pointer transition-transform duration-300 hover:scale-125">
+          <div key={alt} className="relative w-[18px] h-[18px] sm:w-[24px] sm:h-[24px] lg:w-[30px] lg:h-[30px] cursor-pointer transition-all duration-300 hover:scale-125">
             <img alt={alt} className="absolute inset-0 w-full h-full" src={src} loading="lazy" decoding="async" />
           </div>
         ))}

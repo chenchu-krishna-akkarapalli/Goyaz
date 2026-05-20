@@ -6,6 +6,8 @@ import { Footer } from "./components/Footer";
 import { CartProvider } from "./utils/cart";
 import { CartSidebar } from "./components/cart/CartSidebar";
 import { LenisProvider } from "./components/LenisProvider";
+import { AuthProvider } from "./utils/auth";
+import { WishlistProvider } from "./utils/wishlist";
 
 /**
  * Shell font — Outfit loaded once at the root shell level.
@@ -67,29 +69,35 @@ export default function RootLayout({
          *   1. [data-mfe="navbar"]   — sticky navigation shell
          *   2. [data-mfe="main"]     — page-level MFE slot
          *   3. [data-mfe="footer"]   — global footer shell (future)
+         *
+         * Wrapped in AuthProvider and WishlistProvider to unlock global dynamic status triggers.
          */}
-        <CartProvider>
-          <LenisProvider>
-            <div id="mfe-viewport" className="relative flex min-h-full flex-col w-full">
-              <Navbar />
-              {/* ── MFE slot: page content ── */}
-              <main
-                id="mfe-main"
-                data-mfe="main"
-                className="flex-1"
-                /**
-                 * aria-live lets screen-reader clients announce
-                 * soft navigations when the MFE swaps content.
-                 */
-                aria-live="polite"
-              >
-                {children}
-              </main>
-              <Footer />
-            </div>
-            <CartSidebar />
-          </LenisProvider>
-        </CartProvider>
+        <AuthProvider>
+          <WishlistProvider>
+            <CartProvider>
+              <LenisProvider>
+                <div id="mfe-viewport" className="relative flex min-h-full flex-col w-full">
+                  <Navbar />
+                  {/* ── MFE slot: page content ── */}
+                  <main
+                    id="mfe-main"
+                    data-mfe="main"
+                    className="flex-1"
+                    /**
+                     * aria-live lets screen-reader clients announce
+                     * soft navigations when the MFE swaps content.
+                     */
+                    aria-live="polite"
+                  >
+                    {children}
+                  </main>
+                  <Footer />
+                </div>
+                <CartSidebar />
+              </LenisProvider>
+            </CartProvider>
+          </WishlistProvider>
+        </AuthProvider>
       </body>
     </html>
   );

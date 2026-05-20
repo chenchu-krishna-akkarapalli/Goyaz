@@ -28,7 +28,7 @@ function CartIconLarge() {
 
 export function CartSidebar() {
   const { items, isOpen, close, increment, decrement, removeItem, totals } = useCart();
-  const shouldRender = useDelayedUnmount(isOpen, 450);
+  const shouldRender = useDelayedUnmount(isOpen, 1500);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -44,6 +44,25 @@ export function CartSidebar() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [isOpen, close]);
+
+  // Lock body scroll while cart is open
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+      (window as any).lenis?.stop();
+    } else {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      (window as any).lenis?.start();
+    }
+    return () => {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      (window as any).lenis?.start();
+    };
+  }, [isOpen]);
 
   if (!mounted || !shouldRender) return null;
 

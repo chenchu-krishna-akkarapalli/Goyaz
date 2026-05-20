@@ -8,6 +8,8 @@ import {
   NAV_MENU_SECTIONS,
 } from "../data/navMenu";
 import { ANIMATION_CLASSES, useReducedMotion } from "../utils/animations";
+import { useAuth } from "../utils/auth";
+import { useWishlist } from "../utils/wishlist";
 
 interface NavMenuProps {
   isOpen: boolean;
@@ -76,10 +78,13 @@ const CloseIcon = () => (
 );
 
 // Exit animation duration — must match navChildPanelSlideOut keyframe timing
-const SLIDE_OUT_MS = 650;
+const SLIDE_OUT_MS = 1500;
 
 export function NavMenu({ isOpen, onClose }: NavMenuProps) {
   const reduced = useReducedMotion();
+  const { user, open: openAuth, signOut } = useAuth();
+  const { open: openWishlist, items: wishlistItems } = useWishlist();
+  const wishlistCount = wishlistItems.length;
 
   // ── Level 1 → 2 (section drill) ──────────────────────────────
   const [activeSectionId, setActiveSectionId] = useState<string | null>(DEFAULT_SECTION_ID);
@@ -183,8 +188,20 @@ export function NavMenu({ isOpen, onClose }: NavMenuProps) {
 
   // ── Lifecycle ─────────────────────────────────────────────────
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+      (window as any).lenis?.stop();
+    } else {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      (window as any).lenis?.start();
+    }
+    return () => {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      (window as any).lenis?.start();
+    };
   }, [isOpen]);
 
   useEffect(() => {
@@ -313,7 +330,7 @@ export function NavMenu({ isOpen, onClose }: NavMenuProps) {
             <span className="whitespace-nowrap text-[14px] uppercase text-black" style={futuraFont}>Close</span>
           </button>
 
-          <div className="nav-menu-scrollbar absolute inset-x-0 bottom-[118px] top-[88px] overflow-y-auto pr-4">
+          <div data-lenis-prevent className="nav-menu-scrollbar absolute inset-x-0 bottom-[118px] top-[88px] overflow-y-auto pr-4">
             <div className="pl-[20px] lg:pl-[40px] pr-4">
               <div className="flex w-full lg:w-[199px] flex-col gap-[100px] uppercase" style={futuraFont}>
                 {/* Primary section labels */}
@@ -357,24 +374,70 @@ export function NavMenu({ isOpen, onClose }: NavMenuProps) {
             </div>
           </div>
 
-          {/* Account links */}
+          {/* Account & Wishlist links */}
           <div className="absolute bottom-6 left-[20px] lg:left-[40px] right-[16px] lg:right-auto w-auto lg:w-[199px]">
             <div
               className="h-px w-full bg-black"
               style={reduced || !isOpen ? {} : { animation: "navItemSlideUp 0.4s cubic-bezier(0.16,1,0.3,1) 660ms both" }}
             />
             <div className="mt-[30px] flex flex-col items-start gap-[20px] text-[14px] uppercase text-[#4f4f4f]" style={futuraFont}>
-              {NAV_MENU_ACCOUNT_LINKS.map((link, index) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  onClick={onClose}
-                  className="text-left uppercase transition-opacity duration-200 hover:opacity-60"
-                  style={itemStyle(index, 690, 40, isOpen, reduced)}
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {user ? (
+                <>
+                  <span
+                    className="text-left font-display text-[15px] text-[#002f00] font-medium"
+                    style={itemStyle(0, 690, 40, isOpen, reduced)}
+                  >
+                    WELCOME, {user.name.split(" ")[0]}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      openWishlist();
+                      onClose();
+                    }}
+                    className="text-left uppercase transition-opacity duration-200 hover:opacity-60 cursor-pointer"
+                    style={itemStyle(1, 690, 40, isOpen, reduced)}
+                  >
+                    Wishlist ({wishlistCount})
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      signOut();
+                      onClose();
+                    }}
+                    className="text-left uppercase transition-opacity duration-200 hover:opacity-60 text-red-700/80 cursor-pointer"
+                    style={itemStyle(2, 690, 40, isOpen, reduced)}
+                  >
+                    Sign Out
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      openAuth();
+                      onClose();
+                    }}
+                    className="text-left uppercase transition-opacity duration-200 hover:opacity-60 cursor-pointer"
+                    style={itemStyle(0, 690, 40, isOpen, reduced)}
+                  >
+                    Sign In / Register
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      openWishlist();
+                      onClose();
+                    }}
+                    className="text-left uppercase transition-opacity duration-200 hover:opacity-60 cursor-pointer"
+                    style={itemStyle(1, 690, 40, isOpen, reduced)}
+                  >
+                    Wishlist
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -414,7 +477,7 @@ export function NavMenu({ isOpen, onClose }: NavMenuProps) {
             </button>
           </div>
 
-          <div className="flex w-full h-full flex-col pt-[60px] lg:pt-0 overflow-y-auto lg:overflow-hidden nav-menu-scrollbar">
+          <div data-lenis-prevent className="flex w-full h-full flex-col pt-[60px] lg:pt-0 overflow-y-auto lg:overflow-hidden nav-menu-scrollbar">
 
             {/* ── Sub-categories list ── */}
             {showListPanel && (
@@ -505,7 +568,7 @@ export function NavMenu({ isOpen, onClose }: NavMenuProps) {
                     <ArrowRight />
                   </Link>
                 </div>
-                <div className="nav-menu-scrollbar relative lg:absolute lg:bottom-6 lg:left-0 lg:right-0 lg:top-[125px] lg:overflow-y-auto px-[20px] lg:px-[40px] lg:pr-[22px] pt-[20px] lg:pt-0">
+                <div data-lenis-prevent className="nav-menu-scrollbar relative lg:absolute lg:bottom-6 lg:left-0 lg:right-0 lg:top-[125px] lg:overflow-y-auto px-[20px] lg:px-[40px] lg:pr-[22px] pt-[20px] lg:pt-0">
                   <CardsContent animKey={activeSection.id} />
                 </div>
               </div>
@@ -552,7 +615,7 @@ export function NavMenu({ isOpen, onClose }: NavMenuProps) {
                   <CloseIcon />
                 </button>
               </div>
-              <div className="nav-menu-scrollbar flex-1 overflow-y-auto px-[20px] pt-[20px]">
+              <div data-lenis-prevent className="nav-menu-scrollbar flex-1 overflow-y-auto px-[20px] pt-[20px]">
                 <CardsContent animKey={`l3-${selectedSubCat}`} />
                 <Link
                   href={activeSection.ctaHref}
@@ -598,7 +661,7 @@ export function NavMenu({ isOpen, onClose }: NavMenuProps) {
             </div>
 
             {/* Scrollable cards */}
-            <div className="nav-menu-scrollbar absolute bottom-6 left-0 right-0 top-[140px] overflow-y-auto px-[40px] pr-[22px]">
+            <div data-lenis-prevent className="nav-menu-scrollbar absolute bottom-6 left-0 right-0 top-[140px] overflow-y-auto px-[40px] pr-[22px]">
               <CardsContent animKey={`desktop-p3-${desktopSelectedSubCat}`} />
             </div>
           </div>

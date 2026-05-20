@@ -37,6 +37,14 @@ html.lenis body {
   opacity: 1;
 }
 
+/* Custom class to enable smooth transition of BOTH opacity (loading) and transform (zoom) */
+.hover-zoom-transition {
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1), scale 2500ms cubic-bezier(0.16, 1, 0.3, 1) 2500ms, transform 2500ms cubic-bezier(0.16, 1, 0.3, 1) 2500ms !important;
+  scale: 1;
+  transform: translate3d(0, 0, 0);
+  will-change: scale, transform;
+}
+
 /* ─────────────────────────────────────────────
    DESIGN TOKENS — single source of truth
    consumed by every micro-frontend shell

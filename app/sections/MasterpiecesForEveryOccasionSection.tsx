@@ -196,7 +196,7 @@ export function MasterpiecesForEveryOccasionSection() {
           className="w-full overflow-x-auto overflow-y-hidden cursor-grab active:cursor-grabbing"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
-          <StaggerRevealList staggerMs={400} className="flex flex-nowrap gap-[20px] items-start w-max min-w-full" childClassName="flex-shrink-0">
+          <StaggerRevealList key={selectedCategory} staggerMs={400} className="flex flex-nowrap gap-[20px] items-start w-max min-w-full" childClassName="flex-shrink-0">
             {MASTERPIECE_PRODUCTS.filter((p) => p.category === selectedCategory).map((product, productIndex) =>
               product.size === "wide" ? (
                 <MasterpieceWideCard

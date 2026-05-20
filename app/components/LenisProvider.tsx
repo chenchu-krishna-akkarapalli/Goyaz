@@ -33,6 +33,8 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
       anchors: true,
     });
 
+    (window as any).lenis = lenis;
+
     let rafId = 0;
     function raf(time: number) {
       lenis.raf(time);
@@ -43,6 +45,7 @@ export function LenisProvider({ children }: { children: React.ReactNode }) {
     return () => {
       window.cancelAnimationFrame(rafId);
       lenis.destroy();
+      delete (window as any).lenis;
     };
   }, []);
 

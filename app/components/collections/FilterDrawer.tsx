@@ -105,7 +105,7 @@ export function FilterDrawer({
   onClearAll,
   availableTypes,
 }: Props) {
-  const shouldRender = useDelayedUnmount(open, 450);
+  const shouldRender = useDelayedUnmount(open, 1500);
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {

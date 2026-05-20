@@ -32,7 +32,7 @@ export function MasterpiecesInSilverSection() {
       <ScrollRevealWrapper className="flex gap-[32px] md:gap-[80px] lg:gap-[144px] items-center w-full" delay={200}>
         <div
           onClick={handlePrev}
-          className="bg-white rounded-[56px] flex-shrink-0 w-[44px] h-[44px] lg:w-[56px] lg:h-[56px] flex items-center justify-center shadow-[-1px_-1px_2px_rgba(0,0,0,0.25)] cursor-pointer transition-transform duration-300 hover:scale-110"
+          className="bg-white rounded-[56px] flex-shrink-0 w-[44px] h-[44px] lg:w-[56px] lg:h-[56px] flex items-center justify-center shadow-[-1px_-1px_2px_rgba(0,0,0,0.25)] cursor-pointer transition-all duration-300 hover:scale-110"
         >
           <img alt="Previous" className="w-[20px] h-[20px] lg:w-[25px] lg:h-[25px]" src={iconLeft}  loading="lazy" decoding="async" />
         </div>
@@ -60,7 +60,7 @@ export function MasterpiecesInSilverSection() {
 
         <div
           onClick={handleNext}
-          className="bg-white rounded-[56px] flex-shrink-0 w-[44px] h-[44px] lg:w-[56px] lg:h-[56px] flex items-center justify-center shadow-[1px_-1px_2px_rgba(0,0,0,0.25)] cursor-pointer transition-transform duration-300 hover:scale-110"
+          className="bg-white rounded-[56px] flex-shrink-0 w-[44px] h-[44px] lg:w-[56px] lg:h-[56px] flex items-center justify-center shadow-[1px_-1px_2px_rgba(0,0,0,0.25)] cursor-pointer transition-all duration-300 hover:scale-110"
         >
           <img alt="Next" className="w-[20px] h-[20px] lg:w-[25px] lg:h-[25px]" src={iconRight}  loading="lazy" decoding="async" />
         </div>

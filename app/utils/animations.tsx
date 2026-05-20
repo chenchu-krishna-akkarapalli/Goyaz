@@ -87,7 +87,7 @@ export const ANIMATION_CLASSES = {
   hoverZoomBase: 'overflow-hidden group cursor-pointer',
   /** Child image / element that zooms */
   hoverZoomImg:
-    'transition-transform duration-2500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.37]',
+    'hover-zoom-transition group-hover:scale-[1.37]',
 
   /** Lift on hover — card elevation feel */
   hoverLift:
@@ -129,18 +129,18 @@ export const ANIMATION_CLASSES = {
   clipRevealActive: '![clip-path:inset(0%_0_0_0)]',
 
   // ── Nav Menu Panel ─────────────────────────────────────────
-  /** Panel slides in from left — spring easing, 550ms */
+  /** Panel slides in from left — spring easing, 1.5s */
   navMenuPanel:
-    'animate-[navMenuSlideIn_0.55s_cubic-bezier(0.16,1,0.3,1)_forwards]',
-  /** Panel slides out to left — sharp easing, 400ms */
+    'animate-[navMenuSlideIn_1.5s_cubic-bezier(0.16,1,0.3,1)_forwards]',
+  /** Panel slides out to left — sharp easing, 1.5s */
   navMenuPanelExit:
-    'animate-[navMenuSlideOut_0.4s_cubic-bezier(0.4,0,0.6,1)_forwards]',
+    'animate-[navMenuSlideOut_1.5s_cubic-bezier(0.16,1,0.3,1)_forwards]',
   /** Backdrop fades in */
   navBackdrop:
-    'animate-[navBackdropIn_0.4s_ease-out_forwards]',
+    'animate-[navBackdropIn_1.5s_ease-out_forwards]',
   /** Backdrop fades out */
   navBackdropExit:
-    'animate-[navBackdropOut_0.35s_ease-out_forwards]',
+    'animate-[navBackdropOut_1.5s_ease-out_forwards]',
   /** Child panel expands to full width after sliding in */
   navChildPanelIn:
     'animate-[full-width_0.3s_ease-in-out_0.2s_forwards]',
@@ -153,26 +153,26 @@ export const ANIMATION_CLASSES = {
   /** Right child card panel content entrance */
   navChildCardsIn:
     'animate-[navChildCardsIn_0.82s_cubic-bezier(0.16,1,0.3,1)_forwards]',
-  /** Mobile child panel slides in from the right edge (1 s spring) */
+  /** Mobile child panel slides in from the right edge (1.5 s spring) */
   navChildPanelSlideIn:
-    'animate-[navChildPanelSlideInRight_1s_cubic-bezier(0.16,1,0.3,1)_forwards]',
-  /** Mobile child panel slides out to the right edge (0.65 s sharp) */
+    'animate-[navChildPanelSlideInRight_1.5s_cubic-bezier(0.16,1,0.3,1)_forwards]',
+  /** Mobile child panel slides out to the right edge (1.5 s sharp) */
   navChildPanelSlideOut:
-    'animate-[navChildPanelSlideOutRight_0.65s_cubic-bezier(0.4,0,0.6,1)_forwards]',
+    'animate-[navChildPanelSlideOutRight_1.5s_cubic-bezier(0.16,1,0.3,1)_forwards]',
 
   // ── Cart Sidebar ───────────────────────────────────────────
   /** Sidebar slides in from right edge */
   cartDrawerIn:
-    'animate-[cartDrawerSlideIn_0.5s_cubic-bezier(0.16,1,0.3,1)_forwards]',
+    'animate-[cartDrawerSlideIn_1.5s_cubic-bezier(0.16,1,0.3,1)_forwards]',
   /** Sidebar slides out to right edge */
   cartDrawerOut:
-    'animate-[cartDrawerSlideOut_0.4s_cubic-bezier(0.4,0,0.6,1)_forwards]',
+    'animate-[cartDrawerSlideOut_1.5s_cubic-bezier(0.16,1,0.3,1)_forwards]',
   /** Cart backdrop fades in */
   cartBackdropIn:
-    'animate-[cartBackdropIn_0.4s_ease-out_forwards]',
+    'animate-[cartBackdropIn_1.5s_ease-out_forwards]',
   /** Cart backdrop fades out */
   cartBackdropOut:
-    'animate-[cartBackdropOut_0.35s_ease-out_forwards]',
+    'animate-[cartBackdropOut_1.5s_ease-out_forwards]',
   /** Cart line item slides up + fades in */
   cartItemIn:
     'animate-[cartItemSlideUp_0.45s_cubic-bezier(0.16,1,0.3,1)_forwards]',
