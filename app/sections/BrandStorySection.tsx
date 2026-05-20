@@ -12,6 +12,7 @@ import {
 import { ScrollRevealWrapper } from "../utils/animations";
 import { SectionHeading } from "../components/SectionHeading";
 import { SECTION_HEADINGS } from "../data/sectionHeadings";
+import { SequentialImage } from "../components/SequentialImage";
 
 export function BrandStorySection() {
   const frame81 = BRAND_STORY_FRAME81;
@@ -38,10 +39,10 @@ export function BrandStorySection() {
           {/* Overlapping image collage */}
           <div className="flex-shrink-0 relative" style={{ width: 152, height: 152 }}>
             <div className="absolute top-0 left-0 w-[100px] h-[100px] rounded-[15px] overflow-hidden">
-              <img alt="" className="absolute inset-0 object-cover w-full h-full" src={frame81} loading="lazy" decoding="async" />
+              <SequentialImage alt="" className="absolute inset-0 object-cover w-full h-full" src={frame81} sequential={false} />
             </div>
             <div className="absolute bottom-0 right-0 w-[100px] h-[100px] rounded-[15px] overflow-hidden border-2 border-white">
-              <img alt="" className="absolute inset-0 object-cover w-full h-full" src={frame82} loading="lazy" decoding="async" />
+              <SequentialImage alt="" className="absolute inset-0 object-cover w-full h-full" src={frame82} delayMs={150} />
             </div>
           </div>
 
@@ -70,10 +71,10 @@ export function BrandStorySection() {
           {/* Image collage — top-left at x=40 */}
           <div className="absolute top-0 left-[40px]" style={{ width: 480, height: 480 }}>
             <div className="absolute top-0 left-0 w-[320px] h-[320px] rounded-[30px] overflow-hidden">
-              <img alt="" className="absolute inset-0 object-cover w-full h-full" src={frame81} loading="lazy" decoding="async" />
+              <SequentialImage alt="" className="absolute inset-0 object-cover w-full h-full" src={frame81} sequential={false} />
             </div>
             <div className="absolute bottom-0 right-0 w-[320px] h-[320px] rounded-[30px] overflow-hidden border-[5px] border-white">
-              <img alt="" className="absolute inset-0 object-cover w-full h-full" src={frame82} loading="lazy" decoding="async" />
+              <SequentialImage alt="" className="absolute inset-0 object-cover w-full h-full" src={frame82} delayMs={150} />
             </div>
           </div>
           {/* group13 decorative SVG */}
@@ -123,10 +124,10 @@ export function BrandStorySection() {
           {/* Overlapping image collage */}
           <div className="flex-shrink-0 relative" style={{ width: 152, height: 152 }}>
             <div className="absolute top-0 left-0 w-[100px] h-[100px] rounded-[15px] overflow-hidden">
-              <img alt="" className="absolute inset-0 object-cover w-full h-full" src={frame83} loading="lazy" decoding="async" />
+              <SequentialImage alt="" className="absolute inset-0 object-cover w-full h-full" src={frame83} sequential={false} />
             </div>
             <div className="absolute bottom-0 right-0 w-[100px] h-[100px] rounded-[15px] overflow-hidden border-2 border-white">
-              <img alt="" className="absolute inset-0 object-cover w-full h-full" src={frame49} loading="lazy" decoding="async" />
+              <SequentialImage alt="" className="absolute inset-0 object-cover w-full h-full" src={frame49} delayMs={150} />
             </div>
           </div>
         </div>
@@ -158,10 +159,10 @@ export function BrandStorySection() {
           {/* Image collage — right side at x=840 */}
           <div className="absolute top-0 right-[40px]" style={{ width: 480, height: 480 }}>
             <div className="absolute top-0 left-0 w-[320px] h-[320px] rounded-[30px] overflow-hidden">
-              <img alt="" className="absolute inset-0 object-cover w-full h-full" src={frame83} loading="lazy" decoding="async" />
+              <SequentialImage alt="" className="absolute inset-0 object-cover w-full h-full" src={frame83} sequential={false} />
             </div>
             <div className="absolute bottom-0 right-0 w-[320px] h-[320px] rounded-[30px] overflow-hidden border-[5px] border-white">
-              <img alt="" className="absolute inset-0 object-cover w-full h-full" src={frame49} loading="lazy" decoding="async" />
+              <SequentialImage alt="" className="absolute inset-0 object-cover w-full h-full" src={frame49} delayMs={150} />
             </div>
           </div>
           {/* group10 decorative SVG */}
@@ -175,7 +176,7 @@ export function BrandStorySection() {
       <ScrollRevealWrapper className="flex flex-col gap-[10px] lg:gap-[40px] items-center w-full">
         <div className="border-[#083c30] border-[0.5px] border-solid h-[113px] sm:h-[180px] lg:h-[398px] relative rounded-[15px] lg:rounded-[30px] w-full overflow-hidden">
           <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-[15px] lg:rounded-[30px]">
-            <img alt="" className="absolute left-0 max-w-none w-full" src={frame130} style={{ height: "195.3%", top: "-68.09%" }} loading="lazy" decoding="async" />
+            <SequentialImage alt="" className="absolute left-0 max-w-none w-full" src={frame130} style={{ height: "195.3%", top: "-68.09%" }} sequential={false} />
           </div>
 
           {/* Mobile: two-column layout — brand message LEFT · promo RIGHT */}

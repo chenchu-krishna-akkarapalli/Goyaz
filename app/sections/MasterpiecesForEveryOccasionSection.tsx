@@ -144,17 +144,19 @@ export function MasterpiecesForEveryOccasionSection() {
       <div className="flex flex-col gap-[40px] items-center w-full">
         <div
           ref={scrollRef}
+          data-lenis-prevent
           className="w-full overflow-x-auto overflow-y-hidden cursor-grab active:cursor-grabbing"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           <StaggerRevealList staggerMs={400} className="flex flex-nowrap gap-[20px] items-start w-max min-w-full" childClassName="flex-shrink-0">
-            {MASTERPIECE_PRODUCTS.filter((p) => p.category === selectedCategory).map((product) =>
+            {MASTERPIECE_PRODUCTS.filter((p) => p.category === selectedCategory).map((product, productIndex) =>
               product.size === "wide" ? (
                 <MasterpieceWideCard
                   key={product.id}
                   imageSrc={product.imageSrc}
                   title={product.title}
                   price={product.price}
+                  imageIndex={productIndex}
                 />
               ) : (
                 <MasterpieceNormalCard
@@ -162,6 +164,7 @@ export function MasterpiecesForEveryOccasionSection() {
                   imageSrc={product.imageSrc}
                   title={product.title}
                   price={product.price}
+                  imageIndex={productIndex}
                 />
               )
             )}

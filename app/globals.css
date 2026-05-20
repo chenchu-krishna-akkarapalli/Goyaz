@@ -1,6 +1,43 @@
 @import "tailwindcss";
 
 /* ─────────────────────────────────────────────
+   LENIS smooth-scroll integration
+───────────────────────────────────────────── */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* GPU helper used by sliders, marquees, hero carousel */
+.gpu-layer {
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Fade-in once an <img> emits onLoad — used by SequentialImage */
+.seq-img {
+  opacity: 0;
+  transition: opacity 700ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.seq-img.is-loaded {
+  opacity: 1;
+}
+
+/* ─────────────────────────────────────────────
    DESIGN TOKENS — single source of truth
    consumed by every micro-frontend shell
 ───────────────────────────────────────────── */

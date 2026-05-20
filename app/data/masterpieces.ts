@@ -1,13 +1,74 @@
 export type MasterpieceSize = "normal" | "wide";
 
+export type JewelryType =
+  | "Necklace"
+  | "Choker"
+  | "Earrings"
+  | "Bangle"
+  | "Ring"
+  | "Pendant"
+  | "Mangalsutra"
+  | "Haar"
+  | "Hasli"
+  | "Tikka"
+  | "Set"
+  | "Pasa"
+  | "Tiara"
+  | "Other";
+
+export const JEWELRY_TYPES: JewelryType[] = [
+  "Necklace",
+  "Choker",
+  "Earrings",
+  "Bangle",
+  "Ring",
+  "Pendant",
+  "Mangalsutra",
+  "Haar",
+  "Hasli",
+  "Tikka",
+  "Set",
+  "Pasa",
+  "Tiara",
+  "Other",
+];
+
 export type MasterpieceProduct = {
   id: string;
   title: string;
   price: string;
+  priceValue: number;
   imageSrc: string;
   category: "Nakshi" | "Polki" | "Kundan" | "Temple" | "Bridal";
   size: MasterpieceSize;
+  jewelryType: JewelryType;
 };
+
+function deriveJewelryType(title: string): JewelryType {
+  const lower = title.toLowerCase();
+  if (lower.includes("mangalsutra")) return "Mangalsutra";
+  if (lower.includes("haar")) return "Haar";
+  if (lower.includes("hasli")) return "Hasli";
+  if (lower.includes("tikka")) return "Tikka";
+  if (lower.includes("tiara")) return "Tiara";
+  if (lower.includes("pasa") || lower.includes("hairpin")) return "Pasa";
+  if (lower.includes("choker")) return "Choker";
+  if (lower.includes("necklace") || lower.includes("suite")) return "Necklace";
+  if (lower.includes("pendant")) return "Pendant";
+  if (lower.includes("ring")) return "Ring";
+  if (lower.includes("bangle")) return "Bangle";
+  if (lower.includes("set")) return "Set";
+  if (
+    lower.includes("earring") ||
+    lower.includes("stud") ||
+    lower.includes("hoop") ||
+    lower.includes("earcuff") ||
+    lower.includes("drop")
+  )
+    return "Earrings";
+  if (lower.includes("cuff")) return "Bangle";
+  return "Other";
+}
 
 export const MASTERPIECE_LINE_IMAGE =
   "/images/sections/masterpieces/tab-line.svg";
@@ -138,14 +199,20 @@ const CATEGORY_OFFSETS: Record<MasterpieceProduct["category"], { base: number; s
 function buildCategory(category: MasterpieceProduct["category"]): MasterpieceProduct[] {
   const cfg = CATEGORY_OFFSETS[category];
   const titles = PRODUCT_TITLES[category];
-  return Array.from({ length: PER_CATEGORY }, (_, i) => ({
-    id: `${category.toLowerCase()}-product-${i + 1}`,
-    title: titles[i] ?? `${category} Masterpiece ${i + 1}`,
-    price: `INR ${(cfg.base + i * cfg.step).toLocaleString("en-IN")}/-`,
-    imageSrc: COLLECTION_IMAGES[(i + cfg.img) % COLLECTION_IMAGES.length],
-    category,
-    size: sizeAt(i),
-  }));
+  return Array.from({ length: PER_CATEGORY }, (_, i) => {
+    const title = titles[i] ?? `${category} Masterpiece ${i + 1}`;
+    const priceValue = cfg.base + i * cfg.step;
+    return {
+      id: `${category.toLowerCase()}-product-${i + 1}`,
+      title,
+      price: `INR ${priceValue.toLocaleString("en-IN")}/-`,
+      priceValue,
+      imageSrc: COLLECTION_IMAGES[(i + cfg.img) % COLLECTION_IMAGES.length],
+      category,
+      size: sizeAt(i),
+      jewelryType: deriveJewelryType(title),
+    };
+  });
 }
 
 export const MASTERPIECE_PRODUCTS: MasterpieceProduct[] = MASTERPIECE_CATEGORIES.flatMap(buildCategory);

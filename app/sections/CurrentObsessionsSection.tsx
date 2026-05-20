@@ -3,6 +3,7 @@ import { CURRENT_OBSESSIONS } from "../data/currentObsessions";
 import { ScrollRevealWrapper, ANIMATION_CLASSES } from "../utils/animations";
 import { SectionHeading } from "../components/SectionHeading";
 import { SECTION_HEADINGS } from "../data/sectionHeadings";
+import { SequentialImage } from "../components/SequentialImage";
 
 export function CurrentObsessionsSection() {
   return (
@@ -15,13 +16,13 @@ export function CurrentObsessionsSection() {
           const card = (
             <div className={`flex flex-col gap-2 lg:gap-4 items-center w-full ${ANIMATION_CLASSES.hoverZoomBase}`}>
               <div className="border-[#083c30] border-[0.5px] border-solid aspect-square relative rounded-[16px] sm:rounded-[20px] lg:rounded-[30px] w-full overflow-hidden">
-                <img
+                <SequentialImage
                   alt={label}
                   className={`absolute inset-0 w-full h-full object-cover rounded-[16px] sm:rounded-[20px] lg:rounded-[30px] pointer-events-none ${ANIMATION_CLASSES.hoverZoomImg}`}
                   src={img}
                   style={objectPosition ? { objectPosition } : undefined}
-                  loading="lazy"
-                  decoding="async"
+                  sequential={index > 0}
+                  delayMs={index > 0 ? index * 120 : undefined}
                 />
               </div>
               <p className="font-sans text-[11px] sm:text-[13px] lg:text-[16px] text-black text-center leading-[96.8%] w-full uppercase tracking-wide">{label}</p>

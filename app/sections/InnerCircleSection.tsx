@@ -20,6 +20,7 @@ import {
 import { ScrollRevealWrapper, ANIMATION_CLASSES, DirectionalReveal } from "../utils/animations";
 import { SectionHeading } from "../components/SectionHeading";
 import { SECTION_HEADINGS } from "../data/sectionHeadings";
+import { SequentialImage } from "../components/SequentialImage";
 
 type DragState = {
   pointerId: number;
@@ -41,12 +42,11 @@ function MobileStoryPanel({
 }) {
   return (
     <ScrollRevealWrapper className="relative w-full h-[340px] sm:h-[420px] overflow-hidden">
-      <img
+      <SequentialImage
         alt=""
         src={image}
         className="absolute inset-0 w-full h-full object-cover"
-        loading="lazy"
-        decoding="async"
+        sequential={false}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 px-6 pb-6 pt-16 flex flex-col gap-2">
@@ -122,6 +122,7 @@ function MobileCardCarousel({ startIndex = 0 }: { startIndex?: number }) {
     <div className="flex flex-col gap-4 w-full">
       <div
         ref={viewportRef}
+        data-lenis-prevent
         className="w-full overflow-x-auto scroll-smooth snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
         onScroll={syncThumbToScroll}
       >
@@ -132,13 +133,13 @@ function MobileCardCarousel({ startIndex = 0 }: { startIndex?: number }) {
               className={`flex-shrink-0 w-[54vw] sm:w-[38vw] flex flex-col gap-2 snap-start ${ANIMATION_CLASSES.hoverZoomBase}`}
             >
               <div className="aspect-square relative w-full rounded-[16px] overflow-hidden border border-[#083c30]/20">
-                <img
+                <SequentialImage
                   alt=""
                   className={`absolute inset-0 object-cover w-full h-full ${ANIMATION_CLASSES.hoverZoomImg}`}
                   src={card.imageSrc}
                   draggable={false}
-                  loading="lazy"
-                  decoding="async"
+                  sequential={index > 0}
+                  delayMs={index > 0 ? index * 100 : undefined}
                 />
               </div>
               <div className="font-sans flex flex-col gap-0.5 text-black">
@@ -248,7 +249,14 @@ function InnerCircleCardPanel({ startIndex = 0 }: { startIndex?: number }) {
               {cards.map((card, index) => (
                 <div key={`${card.title}-${index}`} className={`flex-shrink-0 w-[300px] flex flex-col gap-[10px] items-center snap-start ${ANIMATION_CLASSES.hoverZoomBase}`}>
                   <div className="h-[300px] relative w-full rounded-[30px] overflow-hidden">
-                    <img alt="" className={`absolute inset-0 object-cover w-full h-full rounded-[30px] ${ANIMATION_CLASSES.hoverZoomImg}`} src={card.imageSrc} draggable={false} loading="lazy" decoding="async" />
+                    <SequentialImage
+                      alt=""
+                      className={`absolute inset-0 object-cover w-full h-full rounded-[30px] ${ANIMATION_CLASSES.hoverZoomImg}`}
+                      src={card.imageSrc}
+                      draggable={false}
+                      sequential={index > 0}
+                      delayMs={index > 0 ? index * 100 : undefined}
+                    />
                   </div>
                   <div className="font-sans flex flex-col gap-[10px] items-center text-black w-[240px]">
                     <p className="text-[16px] text-center uppercase leading-[96.8%]">{card.title}</p>
@@ -337,7 +345,7 @@ export function InnerCircleSection() {
             <DirectionalReveal direction="left" className="w-full lg:w-[960px] lg:flex-shrink-0">
               <div style={{ transform: "scaleY(-1) rotate(180deg)" }}>
                 <div className="lg:h-[640px] w-full lg:w-[960px] overflow-hidden relative">
-                  <img alt="" className="absolute inset-0 object-cover w-full h-full" src={frame47} loading="lazy" decoding="async" />
+                  <SequentialImage alt="" className="absolute inset-0 object-cover w-full h-full" src={frame47} sequential={false} />
                   <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center w-[90%] lg:w-[477px]" style={{ top: "calc(50% + 83px)" }}>
                     <p className="font-display text-[32px] text-[#013809] text-center w-full" style={{ transform: "scaleY(-1) rotate(180deg)" }}>
                       {INNER_CIRCLE_HEADING_1}
@@ -365,7 +373,7 @@ export function InnerCircleSection() {
 
             <DirectionalReveal direction="right" className="w-full lg:w-[960px] lg:flex-shrink-0">
               <div className="lg:h-[640px] w-full lg:w-[960px] relative overflow-hidden">
-                <img alt="" className="absolute inset-0 object-cover w-full h-full" src={frame130} loading="lazy" decoding="async" />
+                <SequentialImage alt="" className="absolute inset-0 object-cover w-full h-full" src={frame130} sequential={false} />
                 <p className="font-display absolute text-[32px] text-center text-white w-[477px]" style={{ left: "calc(50% - 238.5px)", top: "calc(50% - 188px)" }}>
                   {INNER_CIRCLE_HEADING_2}
                 </p>
@@ -380,7 +388,7 @@ export function InnerCircleSection() {
 
       {/* Full-width banner — all breakpoints */}
       <ScrollRevealWrapper className="w-full h-[300px] sm:h-[440px] lg:h-[660px] relative overflow-hidden rounded-none" delay={200}>
-        <img alt="" className="absolute inset-0 object-cover w-full h-full pointer-events-none" src={frame60} loading="lazy" decoding="async" />
+        <SequentialImage alt="" className="absolute inset-0 object-cover w-full h-full pointer-events-none" src={frame60} sequential={false} />
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 px-4">
           <p className="font-display text-[22px] lg:text-[32px] text-center text-white w-full max-w-[477px]">
             {INNER_CIRCLE_HEADING_3}

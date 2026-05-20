@@ -2,6 +2,7 @@ import { SPOTTED_IN_GOYAZ_ELLIPSE, SPOTTED_IN_GOYAZ_IMAGES } from "../data/spott
 import { MarqueeTrack, ANIMATION_CLASSES } from "../utils/animations";
 import { SectionHeading } from "../components/SectionHeading";
 import { SECTION_HEADINGS } from "../data/sectionHeadings";
+import { SequentialImage } from "../components/SequentialImage";
 
 export function SpottedInGoyazSection() {
   const ellipse5 = SPOTTED_IN_GOYAZ_ELLIPSE;
@@ -20,12 +21,12 @@ export function SpottedInGoyazSection() {
               key={index}
               className={`relative h-full w-[80px] flex-shrink-0 ${ANIMATION_CLASSES.hoverZoomBase}`}
             >
-              <img
+              <SequentialImage
                 alt=""
                 className={`absolute inset-0 h-full w-full object-cover ${ANIMATION_CLASSES.hoverZoomImg}`}
                 src={img}
-                loading="lazy"
-                decoding="async"
+                sequential={index >= 3}
+                delayMs={index >= 3 ? (index - 2) * 80 : undefined}
               />
             </div>
           ))}
@@ -52,12 +53,12 @@ export function SpottedInGoyazSection() {
               key={index}
               className={`relative h-full w-[325px] flex-shrink-0 ${ANIMATION_CLASSES.hoverZoomBase}`}
             >
-              <img
+              <SequentialImage
                 alt=""
                 className={`absolute inset-0 h-full w-full object-cover ${ANIMATION_CLASSES.hoverZoomImg}`}
                 src={img}
-                loading="lazy"
-                decoding="async"
+                sequential={index >= 3}
+                delayMs={index >= 3 ? (index - 2) * 80 : undefined}
               />
             </div>
           ))}

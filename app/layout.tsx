@@ -5,6 +5,7 @@ import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { CartProvider } from "./utils/cart";
 import { CartSidebar } from "./components/cart/CartSidebar";
+import { LenisProvider } from "./components/LenisProvider";
 
 /**
  * Shell font — Outfit loaded once at the root shell level.
@@ -57,6 +58,7 @@ export default function RootLayout({
        * CSS isolation rules in globals.css anchor to this.
        */
       data-shell="goyaz"
+      suppressHydrationWarning
     >
       <body className="h-full bg-[var(--color-bg)] text-[var(--color-fg)] overflow-x-clip">
         {/*
@@ -67,24 +69,26 @@ export default function RootLayout({
          *   3. [data-mfe="footer"]   — global footer shell (future)
          */}
         <CartProvider>
-          <div id="mfe-viewport" className="relative flex min-h-full flex-col w-full">
-            <Navbar />
-            {/* ── MFE slot: page content ── */}
-            <main
-              id="mfe-main"
-              data-mfe="main"
-              className="flex-1"
-              /**
-               * aria-live lets screen-reader clients announce
-               * soft navigations when the MFE swaps content.
-               */
-              aria-live="polite"
-            >
-              {children}
-            </main>
-            <Footer />
-          </div>
-          <CartSidebar />
+          <LenisProvider>
+            <div id="mfe-viewport" className="relative flex min-h-full flex-col w-full">
+              <Navbar />
+              {/* ── MFE slot: page content ── */}
+              <main
+                id="mfe-main"
+                data-mfe="main"
+                className="flex-1"
+                /**
+                 * aria-live lets screen-reader clients announce
+                 * soft navigations when the MFE swaps content.
+                 */
+                aria-live="polite"
+              >
+                {children}
+              </main>
+              <Footer />
+            </div>
+            <CartSidebar />
+          </LenisProvider>
         </CartProvider>
       </body>
     </html>

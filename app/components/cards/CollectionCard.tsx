@@ -10,6 +10,8 @@ type CollectionCardProps = {
   title: string;
   price: string;
   wide?: boolean;
+  /** When true, card fills its container instead of using fixed lg widths. Used in uniform grid. */
+  fluid?: boolean;
   category?: string;
 };
 
@@ -24,8 +26,8 @@ function CartIcon() {
   );
 }
 
-export function CollectionCard({ id, imageSrc, title, price, wide = false, category }: CollectionCardProps) {
-  const cardW = wide ? "w-full lg:w-[670px]" : "w-full lg:w-[325px]";
+export function CollectionCard({ id, imageSrc, title, price, wide = false, fluid = false, category }: CollectionCardProps) {
+  const cardW = fluid ? "w-full" : wide ? "w-full lg:w-[670px]" : "w-full lg:w-[325px]";
   const { addItem } = useCart();
 
   const CardBody = (

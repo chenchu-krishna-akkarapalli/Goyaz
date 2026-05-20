@@ -2,12 +2,15 @@
 
 import { ANIMATION_CLASSES } from "../../utils/animations";
 import { useCart } from "../../utils/cart";
+import { SequentialImage } from "../SequentialImage";
 
 type MasterpieceNormalCardProps = {
   id?: string;
   imageSrc: string;
   title: string;
   price: string;
+  /** Position in the section grid — 0 loads immediately, others stagger */
+  imageIndex?: number;
 };
 
 const FALLBACK_IMAGE =
@@ -21,19 +24,19 @@ function CartIcon() {
   );
 }
 
-export function MasterpieceNormalCard({ id, imageSrc, title, price }: MasterpieceNormalCardProps) {
+export function MasterpieceNormalCard({ id, imageSrc, title, price, imageIndex }: MasterpieceNormalCardProps) {
   const { addItem } = useCart();
   const productId = id ?? `masterpiece-${title.replace(/\s+/g, "-").toLowerCase()}`;
 
   return (
     <div className={`flex flex-col gap-[10px] items-center w-[220px] sm:w-[270px] lg:w-[325px] shrink-0 ${ANIMATION_CLASSES.hoverZoomBase}`}>
       <div className="border-[#083c30] border-[0.5px] border-solid aspect-square relative rounded-[30px] w-full overflow-hidden">
-        <img
+        <SequentialImage
           alt=""
           className={`absolute inset-0 object-cover w-full h-full rounded-[30px] ${ANIMATION_CLASSES.hoverZoomImg}`}
           src={imageSrc}
-          loading="lazy"
-          decoding="async"
+          sequential={imageIndex === undefined || imageIndex > 0}
+          delayMs={imageIndex !== undefined && imageIndex > 0 ? imageIndex * 120 : undefined}
           onError={(event) => {
             event.currentTarget.src = FALLBACK_IMAGE;
           }}

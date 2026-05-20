@@ -88,7 +88,7 @@ export function CartSidebar() {
         </div>
 
         {/* ── Body ── */}
-        <div className="font-sans flex-1 overflow-y-auto nav-menu-scrollbar px-[24px] py-[20px]">
+        <div data-lenis-prevent className="font-sans flex-1 overflow-y-auto nav-menu-scrollbar px-[24px] py-[20px]">
           {items.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center text-center gap-[12px] text-(--color-dark)/70 py-[60px]">
               <CartIconLarge />

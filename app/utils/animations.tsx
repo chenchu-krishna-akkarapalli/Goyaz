@@ -811,7 +811,7 @@ export function MarqueeTrack({
       style={{ WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)' }}
     >
       <div
-        className="flex h-full"
+        className="flex h-full gpu-layer"
         style={{
           gap,
           animationName: reducedMotion ? 'none' : 'marquee',
@@ -821,6 +821,11 @@ export function MarqueeTrack({
           animationDirection: reverse ? 'reverse' : 'normal',
           animationPlayState: 'running',
           width: 'max-content',
+          /* Force a compositor layer so the marquee animation
+             never causes layout/paint on the main thread */
+          transform: 'translate3d(0,0,0)',
+          willChange: 'transform',
+          backfaceVisibility: 'hidden',
         }}
         {...(pauseOnHover && !reducedMotion ? {
           onMouseEnter: (e) => (e.currentTarget.style.animationPlayState = 'paused'),

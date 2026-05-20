@@ -8,6 +8,7 @@ import {
 import { ScrollRevealWrapper, ANIMATION_CLASSES } from "../utils/animations";
 import { SectionHeading } from "../components/SectionHeading";
 import { SECTION_HEADINGS } from "../data/sectionHeadings";
+import { SequentialImage } from "../components/SequentialImage";
 
 export function MasterpiecesInSilverSection() {
   const iconLeft = MASTERPIECES_IN_SILVER_ICON_LEFT;
@@ -39,12 +40,13 @@ export function MasterpiecesInSilverSection() {
         <div className="flex-1 min-w-0 relative flex justify-center overflow-hidden h-[340px] sm:h-[500px] lg:h-[560px]">
           <div className="flex flex-col gap-[10px] items-center w-full max-w-[320px] sm:max-w-[380px] lg:max-w-[426px] absolute top-1/2 -translate-y-1/2">
             <div className={`relative w-full aspect-square overflow-hidden rounded-[30px] ${ANIMATION_CLASSES.hoverZoomBase}`}>
-              <img
+              <SequentialImage
                 key={currentProduct.id}
                 alt={currentProduct.title}
                 className={`absolute inset-0 object-cover w-full h-full rounded-[30px] animate-[fade_0.4s_ease-in-out] ${ANIMATION_CLASSES.hoverZoomImg}`}
                 src={currentProduct.image}
-               loading="lazy" decoding="async" />
+                sequential={false}
+              />
             </div>
             <div className="font-sans flex flex-col gap-[10px] items-center text-black w-full max-w-[240px]">
               <p className="text-[16px] text-center uppercase leading-[96.8%] h-[32px] flex items-center justify-center">{currentProduct.title}</p>
