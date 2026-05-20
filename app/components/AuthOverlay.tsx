@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import Link from "next/link";
 import { useAuth } from "../utils/auth";
 import { ANIMATION_CLASSES, useDelayedUnmount } from "../utils/animations";
 
