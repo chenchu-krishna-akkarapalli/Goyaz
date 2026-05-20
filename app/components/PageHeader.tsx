@@ -28,18 +28,18 @@ export function PageHeader({
   return (
     <div className="sticky top-0 z-40 bg-white w-full border-b border-[#f0f0f0]">
       <div className="layout-container">
-        <div className="layout-inner py-[25px] flex items-center justify-between">
+        <div className="layout-inner py-[14px] lg:py-[25px] flex items-center justify-between">
 
           {/* Left — subtitle + title (optionally with count) */}
           <DirectionalReveal direction="left">
-            <div className="font-sans flex flex-col gap-[16px] lg:gap-[30px] items-start text-(--color-dark) leading-[96.8%]">
+            <div className="font-sans flex flex-col gap-[8px] lg:gap-[30px] items-start text-(--color-dark) leading-[96.8%]">
               {subtitle && (
-                <p className="text-[14px] lg:text-[16px]">{subtitle}</p>
+                <p className="text-[10px] lg:text-[16px] uppercase tracking-[0.08em]">{subtitle}</p>
               )}
               <div className="flex items-start whitespace-nowrap">
-                <p className="text-[28px] md:text-[40px] lg:text-[48px]">{title}</p>
+                <p className="text-[20px] sm:text-[28px] md:text-[36px] lg:text-[48px]">{title}</p>
                 {count !== undefined && (
-                  <p className="text-[14px] lg:text-[16px] mt-1 lg:mt-2 ml-1">{count}</p>
+                  <p className="text-[10px] lg:text-[16px] mt-0.5 lg:mt-2 ml-1">{count}</p>
                 )}
               </div>
             </div>

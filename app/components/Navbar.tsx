@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import { NavMenu } from "./NavMenu";
 import { useDelayedUnmount } from "../utils/animations";
 import { useCart } from "../utils/cart";
@@ -51,9 +52,9 @@ export function Navbar() {
     <>
       {/* Navbar bar */}
       <div className={`fixed h-[60px] lg:h-[80px] left-0 overflow-hidden top-0 w-full z-50 transition-all duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'} ${isScrolled ? 'bg-white/85 backdrop-blur-md shadow-sm' : 'bg-transparent animate-[slideDown_0.8s_ease-out]'}`}>
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[40px] w-auto lg:h-[79px] lg:w-[118px]">
-          <img alt="" className="absolute inset-0 object-contain w-full h-full pointer-events-none" src={NAVBAR_LOGO}  loading="lazy" decoding="async" />
-        </div>
+        <Link href="/" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          <img alt="Goyaz" className="h-[36px] lg:h-[56px] w-auto object-contain" src={NAVBAR_LOGO} loading="lazy" decoding="async" />
+        </Link>
         <button
           onClick={openMenu}
           className="absolute left-[16px] lg:left-[40px] top-1/2 -translate-y-1/2 flex gap-[10px] lg:gap-[14px] items-center cursor-pointer transition-transform duration-300 hover:scale-105"

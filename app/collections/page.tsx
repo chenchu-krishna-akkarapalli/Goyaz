@@ -32,18 +32,29 @@ export default function CollectionsIndexPage() {
       <PageHeader subtitle="Silver Jeweler" title="All Collections" />
 
       {/* ── Collections grid ── */}
-      <div className="layout-container pb-[60px]">
+      <div className="layout-container py-[16px] lg:py-0 pb-[40px] lg:pb-[60px]">
         <div className="layout-inner">
-          <div className="flex flex-wrap gap-[20px]">
-            {MASTERPIECE_CATEGORIES.map((cat) => {
-              const count = MASTERPIECE_PRODUCTS.filter((p) => p.category === cat).length;
-              const heroImg = COLLECTION_HERO[cat];
+          {/*
+            Mobile / tablet : 2-col grid; last card spans full width when count is odd
+            Desktop          : flex-wrap with fixed 325 × 420 px cards (unchanged)
+          */}
+          <div className="grid grid-cols-2 gap-[10px] sm:gap-[14px] lg:flex lg:flex-wrap lg:gap-[20px]">
+            {MASTERPIECE_CATEGORIES.map((cat, index) => {
+              const count    = MASTERPIECE_PRODUCTS.filter((p) => p.category === cat).length;
+              const heroImg  = COLLECTION_HERO[cat];
+              const lastOdd  = index === MASTERPIECE_CATEGORIES.length - 1 && MASTERPIECE_CATEGORIES.length % 2 !== 0;
 
               return (
                 <Link
                   key={cat}
                   href={`/collections/${cat.toLowerCase()}`}
-                  className={`group relative overflow-hidden rounded-[30px] flex-shrink-0 w-[325px] h-[420px] block`}
+                  className={[
+                    "group relative overflow-hidden block",
+                    "rounded-[16px] lg:rounded-[30px]",
+                    "h-[185px] sm:h-[230px] lg:h-[420px]",
+                    "w-full lg:w-[325px] lg:flex-shrink-0",
+                    lastOdd ? "col-span-2" : "",
+                  ].join(" ")}
                 >
                   <img
                     src={heroImg}
@@ -53,11 +64,11 @@ export default function CollectionsIndexPage() {
                     decoding="async"
                   />
                   {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[rgba(0,20,0,0.75)] via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[rgba(0,20,0,0.78)] via-transparent to-transparent" />
                   {/* Label */}
-                  <div className="absolute bottom-0 left-0 right-0 p-[24px] flex flex-col gap-[4px]">
-                    <p className="font-display text-white text-[24px] leading-none">{cat}</p>
-                    <p className="font-sans text-white/70 text-[14px]">{count} pieces</p>
+                  <div className="absolute bottom-0 left-0 right-0 p-[14px] sm:p-[18px] lg:p-[24px] flex flex-col gap-[3px] lg:gap-[4px]">
+                    <p className="font-display text-white text-[18px] sm:text-[22px] lg:text-[24px] leading-none">{cat}</p>
+                    <p className="font-sans text-white/70 text-[11px] sm:text-[13px] lg:text-[14px]">{count} pieces</p>
                   </div>
                 </Link>
               );

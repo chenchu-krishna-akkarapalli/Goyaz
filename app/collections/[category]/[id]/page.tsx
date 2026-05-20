@@ -39,16 +39,15 @@ export default function ProductPage({
   return (
     <main className="bg-white min-h-screen">
 
-      {/* ── Breadcrumb / nav offset ── */}
-      <div className="pt-[60px] lg:pt-[80px]" />
-
       {/* ════════════════════════════════════════
           MOBILE LAYOUT  (hidden on lg+)
+          No top padding — image goes full-bleed
+          under the transparent navbar
       ════════════════════════════════════════ */}
       <div className="lg:hidden">
 
-        {/* Full-bleed hero image */}
-        <div className="relative w-full h-[380px] sm:h-[460px] overflow-hidden">
+        {/* Full-bleed hero image — overlaid by the fixed navbar */}
+        <div className="relative w-full h-[420px] sm:h-[500px] overflow-hidden">
           <Image
             src={product.imageSrc}
             alt={product.title}
@@ -57,10 +56,10 @@ export default function ProductPage({
             sizes="100vw"
             priority
           />
-          {/* Back link overlay */}
+          {/* Back link — sits below the 60px navbar */}
           <Link
             href={`/collections/${category}`}
-            className="absolute top-[14px] left-[16px] z-10 flex items-center gap-[6px] bg-white/80 backdrop-blur-sm rounded-full px-[12px] py-[7px]"
+            className="absolute top-[72px] left-[16px] z-10 flex items-center gap-[6px] bg-white/80 backdrop-blur-sm rounded-full px-[12px] py-[7px]"
           >
             <svg width="12" height="12" viewBox="0 0 1024 1024" fill="#002f00" style={{ transform: "rotate(180deg)" }}>
               <path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z" />
@@ -131,17 +130,42 @@ export default function ProductPage({
           DESKTOP LAYOUT  (hidden below lg)
       ════════════════════════════════════════ */}
       <div className="hidden lg:block">
+
+        {/* Image header — same height as PageHeader (142px) + 80px navbar offset = 222px
+            Product image fills the strip; overlay gives white navbar icons contrast   */}
+        <div className="relative w-full h-[222px] overflow-hidden">
+          {/* Background: product image */}
+          <Image
+            src={product.imageSrc}
+            alt=""
+            fill
+            className="object-cover object-center"
+            sizes="100vw"
+            priority
+          />
+          {/* Brand-green overlay for legibility */}
+          <div className="absolute inset-0 bg-[#002f00]/65" />
+
+          {/* Content — mirrors PageHeader's vertical rhythm */}
+          <div className="relative z-10 h-full layout-container">
+            <div className="layout-inner h-full flex flex-col justify-end gap-[10px] pb-[25px]">
+              <span className="font-sans text-[11px] uppercase tracking-[0.3em] text-white/40">
+                Silver Jeweler
+              </span>
+              <div className="font-sans flex items-center gap-[8px] text-[13px] text-white/50">
+                <Link href="/collections" className="hover:text-white transition-colors">Collections</Link>
+                <span>/</span>
+                <Link href={`/collections/${category}`} className="hover:text-white transition-colors capitalize">{product.category}</Link>
+                <span>/</span>
+                <span className="text-white/90 font-medium">{product.title}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Main content */}
         <div className="layout-container py-[48px]">
           <div className="layout-inner">
-
-            {/* Breadcrumb */}
-            <div className="font-sans flex items-center gap-[8px] text-[13px] text-[#002f00]/50 mb-[40px]">
-              <Link href="/collections" className="hover:text-[#002f00] transition-colors">Collections</Link>
-              <span>/</span>
-              <Link href={`/collections/${category}`} className="hover:text-[#002f00] transition-colors capitalize">{product.category}</Link>
-              <span>/</span>
-              <span className="text-[#002f00]">{product.title}</span>
-            </div>
 
             {/* Main 2-col grid */}
             <div className="grid grid-cols-[1fr_480px] gap-[60px] items-start">
