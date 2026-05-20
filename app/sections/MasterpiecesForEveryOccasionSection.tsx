@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import Link from "next/link";
 import { MasterpieceNormalCard } from "../components/cards/MasterpieceNormalCard";
 import { MasterpieceWideCard } from "../components/cards/MasterpieceWideCard";
 import {
@@ -112,6 +113,33 @@ export function MasterpiecesForEveryOccasionSection() {
 
   return (
     <section className="flex flex-col gap-[40px] items-start w-full" data-mfe="section">
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes seeAllLetterReveal {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes seeAllHoverBounce {
+          0% { transform: translateY(0); }
+          50% { transform: translateY(-3px); }
+          100% { transform: translateY(0); }
+        }
+        .see-all-letter {
+          display: inline-block;
+          opacity: 0;
+          transform: translateY(4px);
+          animation: seeAllLetterReveal 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .see-all-link {
+          display: inline-flex;
+          justify-content: center;
+          transition: color 0.3s ease;
+        }
+        .see-all-link:hover .see-all-letter {
+          animation: seeAllHoverBounce 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+      `}} />
       <SectionHeading
         left={SECTION_HEADINGS.masterpiecesForEveryOccasion.left}
         delay={200}
@@ -132,8 +160,28 @@ export function MasterpiecesForEveryOccasionSection() {
                     <img alt="" className="block h-full w-full" src={MASTERPIECE_LINE_IMAGE} loading="lazy" decoding="async" />
                   )}
                 </div>
-                <span className="font-sans text-[8px] text-black text-center tracking-[0.32px] font-medium w-full">
-                  {selectedCategory === category ? "SEE ALL" : ""}
+                <span className="font-sans text-[8px] text-black text-center tracking-[0.32px] font-medium w-full select-none">
+                  {selectedCategory === category ? (
+                    <Link
+                      href={`/collections/${category.toLowerCase()}`}
+                      className="see-all-link hover:text-[#002f00] hover:underline transition-colors"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {"SEE ALL".split("").map((char, index) => (
+                        <span
+                          key={index}
+                          className="see-all-letter"
+                          style={{
+                            animationDelay: `${index * 45}ms`,
+                          }}
+                        >
+                          {char === " " ? "\u00A0" : char}
+                        </span>
+                      ))}
+                    </Link>
+                  ) : (
+                    ""
+                  )}
                 </span>
               </div>
             ))}
@@ -153,6 +201,8 @@ export function MasterpiecesForEveryOccasionSection() {
               product.size === "wide" ? (
                 <MasterpieceWideCard
                   key={product.id}
+                  id={product.id}
+                  href={`/collections/${product.category.toLowerCase()}/${product.id}`}
                   imageSrc={product.imageSrc}
                   title={product.title}
                   price={product.price}
@@ -161,6 +211,8 @@ export function MasterpiecesForEveryOccasionSection() {
               ) : (
                 <MasterpieceNormalCard
                   key={product.id}
+                  id={product.id}
+                  href={`/collections/${product.category.toLowerCase()}/${product.id}`}
                   imageSrc={product.imageSrc}
                   title={product.title}
                   price={product.price}

@@ -52,18 +52,23 @@ export default function ProductPage({
             src={product.imageSrc}
             alt={product.title}
             fill
-            className="object-cover"
+            className="object-cover animate-header-zoom"
             sizes="100vw"
             priority
           />
-          {/* Back link — sits below the 60px navbar */}
+          {/* Subtle gradient to protect navbar legibility at the top */}
+          <div className="absolute inset-x-0 top-0 h-[140px] bg-gradient-to-b from-[#002f00]/50 to-transparent pointer-events-none z-10" />
+
+          {/* Back link — sits elegantly below the 80px navbar */}
           <Link
             href={`/collections/${category}`}
-            className="absolute top-[72px] left-[16px] z-10 flex items-center gap-[6px] bg-white/80 backdrop-blur-sm rounded-full px-[12px] py-[7px]"
+            className="absolute top-[92px] left-[16px] z-20 flex items-center gap-[6px] bg-white/75 backdrop-blur-md border border-[#083c30]/10 hover:bg-white/90 hover:scale-[1.05] shadow-md group transition-all duration-300 rounded-full px-[14px] py-[8px]"
           >
-            <svg width="12" height="12" viewBox="0 0 1024 1024" fill="#002f00" style={{ transform: "rotate(180deg)" }}>
-              <path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z" />
-            </svg>
+            <span className="flex items-center justify-center group-hover:-translate-x-0.5 transition-transform duration-300">
+              <svg width="12" height="12" viewBox="0 0 1024 1024" fill="#002f00" style={{ transform: "rotate(180deg)" }}>
+                <path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z" />
+              </svg>
+            </span>
             <span className="font-sans text-[11px] uppercase tracking-[0.08em] text-[#002f00]">Back</span>
           </Link>
         </div>
@@ -131,33 +136,42 @@ export default function ProductPage({
       ════════════════════════════════════════ */}
       <div className="hidden lg:block">
 
-        {/* Image header — same height as PageHeader (142px) + 80px navbar offset = 222px
-            Product image fills the strip; overlay gives white navbar icons contrast   */}
-        <div className="relative w-full h-[222px] overflow-hidden">
-          {/* Background: product image */}
+        {/* Image header — exquisite 280px showcase banner */}
+        <div className="relative w-full h-[280px] overflow-hidden">
+          {/* Background: product image with atmospheric zoom */}
           <Image
             src={product.imageSrc}
             alt=""
             fill
-            className="object-cover object-center"
+            className="object-cover object-center animate-header-zoom"
             sizes="100vw"
             priority
           />
-          {/* Brand-green overlay for legibility */}
-          <div className="absolute inset-0 bg-[#002f00]/65" />
+          {/* Rich brand gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#002f00]/95 via-[#083c30]/80 to-[#002f00]/40 backdrop-brightness-[0.85]" />
+          {/* Top subtle gradient overlay to protect navbar icons */}
+          <div className="absolute inset-x-0 top-0 h-[100px] bg-gradient-to-b from-[#002f00]/40 to-transparent pointer-events-none" />
 
-          {/* Content — mirrors PageHeader's vertical rhythm */}
-          <div className="relative z-10 h-full layout-container">
-            <div className="layout-inner h-full flex flex-col justify-end gap-[10px] pb-[25px]">
-              <span className="font-sans text-[11px] uppercase tracking-[0.3em] text-white/40">
-                Silver Jeweler
-              </span>
-              <div className="font-sans flex items-center gap-[8px] text-[13px] text-white/50">
-                <Link href="/collections" className="hover:text-white transition-colors">Collections</Link>
-                <span>/</span>
-                <Link href={`/collections/${category}`} className="hover:text-white transition-colors capitalize">{product.category}</Link>
-                <span>/</span>
-                <span className="text-white/90 font-medium">{product.title}</span>
+          {/* Content — magazine-style page header */}
+          <div className="relative z-10 h-full layout-container pt-[80px]">
+            <div className="layout-inner h-full flex flex-col justify-between py-[22px]">
+              {/* Breadcrumbs below navbar */}
+              <div className="font-sans flex items-center gap-[10px] text-[11px] uppercase tracking-[0.15em] text-white/60 animate-header-text">
+                <Link href="/collections" className="hover:text-white hover:underline underline-offset-4 decoration-white/30 transition-all duration-300">Collections</Link>
+                <span className="text-white/30">/</span>
+                <Link href={`/collections/${category}`} className="hover:text-white hover:underline underline-offset-4 decoration-white/30 transition-all duration-300 capitalize">{product.category}</Link>
+                <span className="text-white/30">/</span>
+                <span className="text-white font-medium truncate max-w-[250px]">{product.title}</span>
+              </div>
+
+              {/* Big magazine title at the bottom of the header */}
+              <div className="flex flex-col gap-[6px] animate-header-text-staggered">
+                <span className="font-sans text-[10px] uppercase tracking-[0.35em] text-white/50">
+                  Silver Jeweler
+                </span>
+                <h2 className="font-display text-white text-[32px] sm:text-[40px] tracking-[0.03em] font-light leading-none">
+                  The <span className="italic">{product.category}</span> Room
+                </h2>
               </div>
             </div>
           </div>
@@ -250,6 +264,39 @@ export default function ProductPage({
           </div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes headerBgZoom {
+          0% {
+            transform: scale(1.08);
+            filter: blur(2px);
+          }
+          100% {
+            transform: scale(1);
+            filter: blur(0px);
+          }
+        }
+        @keyframes headerTextSlideUp {
+          0% {
+            opacity: 0;
+            transform: translateY(12px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-header-zoom {
+          animation: headerBgZoom 3.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .animate-header-text {
+          animation: headerTextSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .animate-header-text-staggered {
+          opacity: 0;
+          animation: headerTextSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+        }
+      `}</style>
 
     </main>
   );

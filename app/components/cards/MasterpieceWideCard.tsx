@@ -1,11 +1,13 @@
 "use client";
 
+import Link from "next/link";
 import { ANIMATION_CLASSES } from "../../utils/animations";
 import { useCart } from "../../utils/cart";
 import { SequentialImage } from "../SequentialImage";
 
 type MasterpieceWideCardProps = {
   id?: string;
+  href?: string;
   imageSrc: string;
   title: string;
   price: string;
@@ -24,11 +26,11 @@ function CartIcon() {
   );
 }
 
-export function MasterpieceWideCard({ id, imageSrc, title, price, imageIndex }: MasterpieceWideCardProps) {
+export function MasterpieceWideCard({ id, href, imageSrc, title, price, imageIndex }: MasterpieceWideCardProps) {
   const { addItem } = useCart();
   const productId = id ?? `masterpiece-${title.replace(/\s+/g, "-").toLowerCase()}`;
 
-  return (
+  const CardBody = (
     <div className={`flex flex-col gap-[10px] items-center w-[300px] sm:w-[400px] lg:w-[670px] shrink-0 ${ANIMATION_CLASSES.hoverZoomBase}`}>
       <div className="border-[#083c30] border-[0.5px] border-solid h-[220px] sm:h-[270px] lg:h-[325px] relative rounded-[30px] w-full overflow-hidden">
         <SequentialImage
@@ -66,4 +68,14 @@ export function MasterpieceWideCard({ id, imageSrc, title, price, imageIndex }: 
       </div>
     </div>
   );
+
+  if (href) {
+    return (
+      <Link href={href} className="block shrink-0">
+        {CardBody}
+      </Link>
+    );
+  }
+
+  return CardBody;
 }
